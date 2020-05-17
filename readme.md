@@ -9,6 +9,8 @@
 
 ## About Laravel
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/cc98933463c54a0382b828022f5c3ef7)](https://app.codacy.com/manual/GeorgeKariuki7205/Comviva-User-Access-Management?utm_source=github.com&utm_medium=referral&utm_content=GeorgeKariuki7205/Comviva-User-Access-Management&utm_campaign=Badge_Grade_Settings)
+
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
 - [Simple, fast routing engine](https://laravel.com/docs/routing).
