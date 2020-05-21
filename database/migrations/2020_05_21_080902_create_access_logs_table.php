@@ -11,6 +11,7 @@ class CreateAccessLogsTable extends Migration
      *
      * @return void
      */
+
     public function up()
     {
         Schema::create('access_logs', function (Blueprint $table) {
@@ -40,12 +41,12 @@ class CreateAccessLogsTable extends Migration
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *
      * @return void
      */
+    
     public function down()
     {
         Schema::dropIfExists('access_logs');
