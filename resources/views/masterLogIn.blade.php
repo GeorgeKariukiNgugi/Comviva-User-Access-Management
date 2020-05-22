@@ -5,15 +5,15 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="{{asset('AdminLTE-master\bower_components\bootstrap/dist\css\bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('interface\bower_components\bootstrap/dist\css\bootstrap.min.css')}}">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{asset('AdminLTE-master\bower_components\font-awesome\css\font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{asset('interface\bower_components\font-awesome\css\font-awesome.min.css')}}">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="{{asset('AdminLTE-master\bower_components\Ionicons\css\ionicons.min.css')}}">
+    <link rel="stylesheet" href="{{asset('interface\bower_components\Ionicons\css\ionicons.min.css')}}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{asset('AdminLTE-master\dist\css\AdminLTE.min.css')}}">
+    <link rel="stylesheet" href="{{asset('interface\dist\css\AdminLTE.min.css')}}">
 
-    <link rel="stylesheet" href="{{asset('AdminLTE-master\dist\css\skins\skin-green.min.css')}}">
+    <link rel="stylesheet" href="{{asset('interface\dist\css\skins\skin-green.min.css')}}">
   
 
   
@@ -25,14 +25,14 @@
     <div class="login-logo" style="text-align:center;">
       {{-- <a href="../../index2.html"><b>Admin</b>LTE</a> --}}
       
-      <img src="{{asset('images/HcMgk6Jq_400x400.jpg')}}" class="user-image img-circle img-reponsive" width="100px" height="100px" alt="User Image">
-      <h3 style="font-family:'Times New Roman', Times, serif;">Safaricom ISO ScoreCard.</h3>
+      <img src="{{asset('images/index.png')}}" class="user-image img-circle img-reponsive" width="100px" height="100px" alt="User Image">
+      <h3 style="font-family:'Times New Roman', Times, serif;">Comviva User Access Management.</h3>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
       <p class="login-box-msg">Sign in to start your session</p>
-      <P style="margin-top:0%;color:red;text-align:center;"> <b>Use Active Directory Credentials.</b></p>
-      <form action= "logInLdap" method="post">
+      {{-- <P style="margin-top:0%;color:red;text-align:center;"> <b>Use Active Directory Credentials.</b></p> --}}
+      <form action= "login" method="post">
             @csrf
         <div class="form-group has-feedback">
                 
@@ -42,11 +42,11 @@
                         @foreach($errors->all() as $error)
                           <p style="color:red;" > <b>{{$error}}</b> </p>
                         @endforeach
-                        @error('email')
+                        {{-- @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first()}}</strong>
                             </span>
-                        @enderror                          
+                        @enderror                           --}}
         </div>
         <div class="form-group has-feedback">
 
@@ -74,11 +74,11 @@
   <!-- /.login-box -->
   
   <!-- jQuery 3 -->
-  <script src="{{asset('AdminLTE-master/bower_components/jquery/dist/jquery.min.js')}}"></script>
+  <script src="{{asset('interface/bower_components/jquery/dist/jquery.min.js')}}"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="{{asset('AdminLTE-master/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('interface/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
   <!-- iCheck -->
-  <script src="{{asset('AdminLTE-master/plugins/iCheck/icheck.min.js')}}"></script>
+  <script src="{{asset('interface/plugins/iCheck/icheck.min.js')}}"></script>
   <script>
     $(function () {
       $('input').iCheck({
