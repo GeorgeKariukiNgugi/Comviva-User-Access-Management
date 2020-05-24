@@ -11,10 +11,10 @@
         <div class="pull-left info">
           <p>{{$name}}</p>                    
         </div>
-      </div>
+      </div>      
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">MENU</li>
+        <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
         <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
