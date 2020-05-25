@@ -14,6 +14,7 @@ class CreateVisitorsTable extends Migration
     public function up()
     {
         Schema::create('visitors', function (Blueprint $table) {
+            $table->engine = "InnoDB";
             $table->bigIncrements('id');
             $table->string('firstName');
             $table->string('secondName');

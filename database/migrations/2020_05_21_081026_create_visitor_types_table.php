@@ -14,6 +14,7 @@ class CreateVisitorTypesTable extends Migration
     public function up()
     {
         Schema::create('visitor_types', function (Blueprint $table) {
+            $table->engine = "InnoDB";
             $table->bigIncrements('id');
             $table->text('type');
             $table->timestamps();

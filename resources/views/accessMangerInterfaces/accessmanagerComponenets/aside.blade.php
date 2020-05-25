@@ -16,10 +16,10 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MENU</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
+        <li class="active"><a href="#"><i class="fa fa-user-plus"></i> <span>Log Visitors</span></a></li>
+        <li><a href="#"><i class="fa fa-search"></i> <span>Search For Visitors</span></a></li>
+        {{-- <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>Trends</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
@@ -28,7 +28,7 @@
             <li><a href="#">Link in level 2</a></li>
             <li><a href="#">Link in level 2</a></li>
           </ul>
-        </li>
+        </li> --}}
       </ul>
       <!-- /.sidebar-menu -->
     </section>

@@ -30,9 +30,9 @@ class HomeController extends Controller
     public function index()
     {
 
-        // Auth::user()->assignRole('accessmanager');
+        Auth::user()->assignRole('accessmanager');
 
-        $roles = Auth::user()->getRoleNames();
+        $roles = Auth::user()->getRoleNames();        
         $nameOfUser = Auth::user()->firstName.' '.Auth::user()->secondName;
         if (Auth::user()->created_at == 'NULL') {
             # code...

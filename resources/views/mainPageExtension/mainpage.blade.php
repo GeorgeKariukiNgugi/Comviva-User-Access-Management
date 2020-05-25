@@ -18,7 +18,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('interface\dist\css\AdminLTE.min.css')}}">
   
-  <link rel="stylesheet" href="{{asset('interface\dist\css\skins\skin-blue.min.css')}}">  
+  <link rel="stylesheet" href="{{asset('interface\dist\css\skins\skin-blue.min.css')}}"> 
+  <link rel="stylesheet" href="{{asset('\select2-4.0.13\dist\css\select2.min.css')}}">  
+
+  
+
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -34,6 +38,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <a href="index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->      
       <!-- logo for regular state and mobile devices -->
+      <span class="logo-mini"><b>C</b>AM</span>      
       <span class="logo-lg"><b>COMVIVA</span>
     </a>
 
@@ -86,6 +91,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{asset('interface\bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('interface\dist/js/adminlte.min.js')}}"></script>
+<script src="{{asset('select2-4.0.13\dist\js\select2.min.js')}}"></script>
+
+<script>
+  // In your Javascript (external .js resource or <script> tag)
+$(document).ready(function() {
+    $('.js-example-basic-single').select2();
+});
+</script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
