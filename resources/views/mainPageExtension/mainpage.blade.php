@@ -19,7 +19,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{asset('interface\dist\css\AdminLTE.min.css')}}">
   
   <link rel="stylesheet" href="{{asset('interface\dist\css\skins\skin-blue.min.css')}}"> 
-  <link rel="stylesheet" href="{{asset('\select2-4.0.13\dist\css\select2.min.css')}}">  
+  <link rel="stylesheet" href="{{asset('select2\dist\css\select2.min.css')}}">  
 
   
 
@@ -91,13 +91,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{asset('interface\bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('interface\dist/js/adminlte.min.js')}}"></script>
-<script src="{{asset('select2-4.0.13\dist\js\select2.min.js')}}"></script>
+<script src="{{asset('select2\dist\js\select2.min.js')}}"></script>
 
 <script>
   // In your Javascript (external .js resource or <script> tag)
-$(document).ready(function() {
-    $('.js-example-basic-single').select2();
-});
+// $(document).ready(function() {
+//     $('.js-example-basic-single').select2();
+// });
+$(function () {
+    //Initialize Select2 Elements
+    $('.js-example-basic-single').select2()
+
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })
+    })
 </script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.

@@ -29,10 +29,10 @@
                           </div>
                     </div>
                 </div>
-                <select class="js-example-basic-single" name="state">
-                    <option value="AL">Alabama</option>                      
-                    <option value="WY">Wyoming</option>
-                  </select>
+                <select class="js-example-basic-multiple" name="states[]" multiple="multiple">
+                  <option value="AL">Alabama</option>                    
+                  <option value="WY">Wyoming</option>
+                </select>
             </div>
             <!-- /.box-body -->
           </div>
@@ -60,8 +60,7 @@
       <!-- /.col -->
     </div>
     <!-- /.row -->
-  </section>
-
-    
+  </section>    
+    </script>
 @endsection
 {{-- <h4>This is the landing page of the application for the User Access Managers.</h4> --}}
