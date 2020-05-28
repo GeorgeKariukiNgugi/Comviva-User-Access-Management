@@ -8,7 +8,8 @@ use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\User;
-
+use App\VisitorType;
+use App\Company;
 class HomeController extends Controller
 {
     use HasRoles;
@@ -32,6 +33,7 @@ class HomeController extends Controller
         // $role = Role::create(['name' => 'accessmanager']);
         // Auth::user()->assignRole('accessmanager');
 
+
         $roles = Auth::user()->getRoleNames();        
         $nameOfUser = Auth::user()->firstName.' '.Auth::user()->secondName;
         if (Auth::user()->created_at == 'NULL') {
@@ -42,7 +44,19 @@ class HomeController extends Controller
             $dateToUser = date('d-m-Y', strtotime(Auth::user()->created_at));
         }
         
-        
+        // ! getting the type of visitors that are involved in the system. 
+
+        // $typeOfCompanyName = array();
+        // $typeOfCompanyId = array();
+        $company = Company::all();                
+        // foreach ($company as $company) {
+        //     # code...
+        //     array_push($typeOfCompanyName,$company->name);
+        //     array_push($typeOfCompanyId,$company->id);
+        // }
+
+
+
         $numberOfRoles = count($roles);
 
         if ($numberOfRoles == 1) {
@@ -56,10 +70,15 @@ class HomeController extends Controller
             switch ($roleForUser) {
                 case 'accessmanager':
                     # code...                    
-                    return view('accessMangerInterfaces.landing',['name'=>$nameOfUser,'date'=>$dateToUser]);
+                    return view('accessMangerInterfaces.landing',['name'=>$nameOfUser,'date'=>$dateToUser,
+                                // 'company'=>$typeOfCompanyName,'cmpanyId'=>$typeOfCompanyId
+                                'company'=>$company
+                    ]);
                     break;
                     case 'admin':                        
-                        return view('adminInterfaces.landing',['name'=>$nameOfUser,'date'=>$dateToUser]);
+                        return view('adminInterfaces.landing',['name'=>$nameOfUser,'date'=>$dateToUser,
+                                    // 'company'=>$typeOfCompanyName,'cmpanyId'=>$typeOfCompanyId
+                        ]);
                     break;
                 default:
                     return Auth::user()->id;

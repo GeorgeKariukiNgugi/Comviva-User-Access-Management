@@ -19,12 +19,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Route::resource('user', 'UserController');
+// ! this route is used to register users. 
 
-Route::resource('acccesslog', 'AccessLogController');
-
-Route::resource('company', 'CompanyController');
-
-Route::resource('visitor', 'VisitorController');
-
-Route::resource('visitorType', 'VisitorTypeController');
+Route::post('/registerVisitor', 'Visitors@RegisteringVisitors');

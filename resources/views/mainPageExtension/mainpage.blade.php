@@ -20,6 +20,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   
   <link rel="stylesheet" href="{{asset('interface\dist\css\skins\skin-blue.min.css')}}"> 
   <link rel="stylesheet" href="{{asset('select2\dist\css\select2.min.css')}}">  
+  <link rel="stylesheet" href="{{asset('interface\bower_components\select2\dist\css\select2.min.css')}}">
 
   
 
@@ -90,8 +91,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- Bootstrap 3.3.7 -->
 <script src="{{asset('interface\bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 <!-- AdminLTE App -->
-<script src="{{asset('interface\dist/js/adminlte.min.js')}}"></script>
-<script src="{{asset('select2\dist\js\select2.min.js')}}"></script>
+<script src="{{asset('interface\dist\js\adminlte.min.js')}}"></script>
+<script src="{{asset('interface/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
 
 <script>
   // In your Javascript (external .js resource or <script> tag)
@@ -100,15 +101,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 // });
 $(function () {
     //Initialize Select2 Elements
-    $('.js-example-basic-single').select2()
-
-    //Initialize Select2 Elements
-    $('.select2bs4').select2({
-      theme: 'bootstrap4'
-    })
-    })
+    $('.select2').select2()
+    })    
 </script>
-
+@include('sweetalert::alert')
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
