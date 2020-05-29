@@ -22,3 +22,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 // ! this route is used to register users. 
 
 Route::post('/registerVisitor', 'Visitors@RegisteringVisitors');
+
+// ! this route is used to get the Regular Visitors. 
+
+Route::get('/regularVisitor', 'Visitors@getRegularVisitors');
+
+// ! this is the route that is used to post the visitors search. 
+
+Route::post('/postVisitorSearch','Visitors@searchForVisitors');
+
+// ! this route is used to post the visitors after searching. 
+
+Route::post('/checkInVisitor','Visitors@checkInVisitor');

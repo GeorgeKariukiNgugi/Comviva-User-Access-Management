@@ -14,7 +14,7 @@
                 <!-- The user image in the navbar-->                
                 <img src="{{asset('images/user.png')}}" class="user-image" alt="User Image">
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                <span class="hidden-xs"> {{$name}} </span>
+                <span class="hidden-xs"> {{Auth::user()->firstName.' '.Auth::user()->secondName}} </span>
               </a>
               <ul class="dropdown-menu">
                 <!-- The user image in the menu -->
@@ -22,8 +22,8 @@
                   <img src="{{asset('images/user.png')}}" class="img-circle" alt="User Image">
   
                   <p>
-                    {{$name}}
-                    <small>Access Manager since  {{$date}}</small>
+                    {{Auth::user()->firstName.' '.Auth::user()->secondName}}
+                    <small>Access Manager since  {{date('d-m-Y', strtotime(Auth::user()->created_at))}}</small>
                   </p>
                 </li>
                 

@@ -19,6 +19,11 @@
             <div class="box-body">
               <div class="row">
                 <div class="col-md-6 col-md-offset-3">
+
+                  @if (session('status'))
+                        <div role="alert" class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span id="text">{{ session('status') }}</div>
+                  @endif
+
                   @foreach ($errors->all() as $error)
             
                   <div role="alert" class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span id="text">{{$error}}</div>
@@ -125,7 +130,7 @@
                         <div class="icon">
                         <i class="fa fa-user-plus"></i>
                         </div>
-                        <a href = "" style="color: white;" class="small-box-footer">Regular Visitor <i class="fa fa-arrow-circle-o-right"></i></a>
+                        <a href = "/regularVisitor" style="color: white;" class="small-box-footer">Regular Visitor <i class="fa fa-arrow-circle-o-right"></i></a>
                     </div>
                     </div>
             </div>                     

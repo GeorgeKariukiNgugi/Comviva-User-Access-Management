@@ -18,6 +18,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('interface\dist\css\AdminLTE.min.css')}}">
   
+  <link rel="stylesheet" href="{{asset('interface\bower_components\datatables.net-bs\css\dataTables.bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{asset('interface\dist\css\skins\skin-blue.min.css')}}"> 
   <link rel="stylesheet" href="{{asset('select2\dist\css\select2.min.css')}}">  
   <link rel="stylesheet" href="{{asset('interface\bower_components\select2\dist\css\select2.min.css')}}">
@@ -93,7 +94,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- AdminLTE App -->
 <script src="{{asset('interface\dist\js\adminlte.min.js')}}"></script>
 <script src="{{asset('interface/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
+<script src="{{asset('js/searchCreteria.js')}}"></script>
+<script src="{{asset('js/closingModal.js')}}"></script>
 
+<script src="{{asset('interface\bower_components\datatables.net\js\jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('interface\bower_components\datatables.net-bs\js\dataTables.bootstrap.min.js')}}"></script>
+<script src="{{asset('interface\dist\js\adminlte.min.js')}}"></script>
 <script>
   // In your Javascript (external .js resource or <script> tag)
 // $(document).ready(function() {
@@ -102,7 +108,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 $(function () {
     //Initialize Select2 Elements
     $('.select2').select2()
-    })    
+    })   
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    }) 
 </script>
 @include('sweetalert::alert')
 <!-- Optionally, you can add Slimscroll and FastClick plugins.

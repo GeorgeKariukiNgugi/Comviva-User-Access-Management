@@ -9,7 +9,7 @@
           <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>{{$name}}</p>                    
+          <p>{{Auth::user()->firstName.' '.Auth::user()->secondName}}</p>                    
         </div>
       </div>
       <!-- Sidebar Menu -->
