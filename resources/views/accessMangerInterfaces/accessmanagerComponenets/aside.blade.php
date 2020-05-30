@@ -30,6 +30,12 @@
             <li><a href="#">Link in level 2</a></li>
           </ul>
         </li> --}}
+        <li class="header">TRENDS.</li>
+
+        <li class=""><a href="/home"><i class="fa fa-bar-chart"></i> <span>Weekly Trends.</span></a></li>
+
+        <li class="header">REPORTS.</li>
+        <li class=""><a href="/home"><i class="fa fa-book"></i> <span>Weekly Reports.</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>

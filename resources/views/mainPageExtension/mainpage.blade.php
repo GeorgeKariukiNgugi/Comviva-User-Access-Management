@@ -88,14 +88,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- REQUIRED JS SCRIPTS -->
 
 <!-- jQuery 3 -->
-<script src="{{asset('interface\bower_components/jquery/dist/jquery.min.js')}}"></script>
+<script src="{{asset('interface\bower_components\jquery\dist\jquery.min.js')}}"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="{{asset('interface\bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('interface\bower_components\bootstrap\dist\js\bootstrap.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('interface\dist\js\adminlte.min.js')}}"></script>
-<script src="{{asset('interface/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
-<script src="{{asset('js/searchCreteria.js')}}"></script>
-<script src="{{asset('js/closingModal.js')}}"></script>
+<script src="{{asset('interface\bower_components\select2\dist\js\select2.full.min.js')}}"></script>
+<script src="{{asset('js\searchCreteria.js')}}"></script>
+<script src="{{asset('js\closingModal.js')}}"></script>
 
 <script src="{{asset('interface\bower_components\datatables.net\js\jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('interface\bower_components\datatables.net-bs\js\dataTables.bootstrap.min.js')}}"></script>
