@@ -90,7 +90,42 @@ class Visitors extends Controller
         return back()->with(['searchResult'=>$visitorSearchResult,'names'=>$nameValue,'company'=>$company]);
     }
 
-    public function checkInVisitor(){
+    public function checkInVisitor(Request $request){
 
+        $checkingToSeeIfTheVisitorIsLoggedIn = AccessLog::where('visitorId',$request->idOfVisitor)->get();
+        if (count($checkingToSeeIfTheVisitorIsLoggedIn) < 1) {
+
+            $loggingVisitor = new AccessLog();
+            $loggingVisitor->visitorId = $request->idOfVisitor;
+            $loggingVisitor->companyId = $request->company;
+            $loggingVisitor->typeOfVisitorId = $request->typeOfVisitor;
+            $loggingVisitor->timeIn = now();
+            $loggingVisitor->approvedById = Auth::user()->id;
+    
+            $loggingVisitor->save();
+
+            // foreach ($checkingToSeeIfTheVisitorIsLoggedIn as $visitor) {
+            //     # code...
+            //     $nameOfLoggedVisitor = $visitor->accessLogBelongsToAtypeOfVisitor()->id;
+            // }
+            $nameOfLoggedVisitor = $loggingVisitor->accessLogBelongsToVisitor->firstName . '  '. $loggingVisitor->accessLogBelongsToVisitor->secondName;            
+            Alert::success($nameOfLoggedVisitor.'   Visitor Has Successfully been Checked In.', '');
+            return redirect('/home');
+            
+        } else {
+            # code...
+            Alert::warning(' The Visitor Has Already Been Logged In.', 'Click The Link At The Message Link To View More Details.');
+            foreach ($checkingToSeeIfTheVisitorIsLoggedIn as $value) {
+                # code...
+                $details = $value;
+            }
+            return redirect('/home')->with(['details'=>$details]);
+        }            
+    }
+
+    public function checkingOutVisitorsGetFunction(){
+        $visitorsNotLoggedOut = AccessLog::whereNull('TimeOut')->get();
+        return view('accessMangerInterfaces.checkingOutVisitors')->with('visitors',$visitorsNotLoggedOut);
+        
     }
 }

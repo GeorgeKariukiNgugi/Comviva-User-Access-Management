@@ -16,8 +16,9 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MENU</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-user-plus"></i> <span>Log Visitors</span></a></li>
-        <li><a href="#"><i class="fa fa-search"></i> <span>Search For Visitors</span></a></li>
+        <li class="active"><a href="/home"><i class="fa fa-home"></i> <span>Home</span></a></li>
+        <li ><a href="/checkingOutUsers"><i class="fa fa-user-plus"></i> <span>Check Out Visitors.</span></a></li>
+        <li><a href="/regularVisitor"><i class="fa fa-search"></i> <span>Search For Visitors</span></a></li>
         {{-- <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Trends</span>
             <span class="pull-right-container">

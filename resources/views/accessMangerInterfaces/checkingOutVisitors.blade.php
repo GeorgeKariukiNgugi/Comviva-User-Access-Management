@@ -1,2 +1,2 @@
 @extends('accessMangerInterfaces.accessManagerExtension')
-@include('sharedPages.regularVisitorContent')
+@include('sharedPages.checkingOutVisitorContent')

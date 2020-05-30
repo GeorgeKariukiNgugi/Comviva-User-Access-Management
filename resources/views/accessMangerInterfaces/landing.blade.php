@@ -24,6 +24,108 @@
                         <div role="alert" class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span id="text">{{ session('status') }}</div>
                   @endif
 
+                  @if (session('details'))
+                  @php
+                      $details = session('details');
+                  @endphp
+                  <div role="alert" class="alert alert-warning"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span id="text">
+                    {{-- {{ session('status') }} --}}
+                    The Visitor <span style="color:black">{{$details->accessLogBelongsToVisitor->firstName. '   '. $details->accessLogBelongsToVisitor->secondName}}</span>  Has Already Been Logged In, 
+                    <a style="color:blue;" href="#" data-target = "#alreadyLoggedVisitor" data-toggle="modal"> Click to see  More Details.</a>
+                  </div>
+
+
+                  {{-- Modal To Show more Details. --}}
+
+                  <div class="modal fade" id="alreadyLoggedVisitor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Details For: {{$details->accessLogBelongsToVisitor->firstName. '   '. $details->accessLogBelongsToVisitor->secondName}}</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="row">
+                            <div class="col-md-4">
+                                Name:
+                            </div>
+                            <div class="col-md-8">
+                              {{$details->accessLogBelongsToVisitor->firstName. '   '. $details->accessLogBelongsToVisitor->secondName}}
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-md-4">
+                              National ID Number: 
+                            </div>
+                            <div class="col-md-8">
+                              {{$details->accessLogBelongsToVisitor->idNo}}
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-md-4">
+                              Time In: 
+                            </div>
+                            <div class="col-md-8">
+                              @php
+                                   $dateToFormat = date_create($details->accessLogBelongsToVisitor->timeIn);
+                                   $date = date_format($dateToFormat, "D-d-F-Y H:i:s");  
+
+                              @endphp
+                              {{$date}}
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-md-4">
+                              Company Name Visited: 
+                            </div>
+                            <div class="col-md-8">
+                              {{$details->accessLogBelongsToCompany->name}}
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-md-4">
+                              Form Of Visit:  
+                            </div>
+                            <div class="col-md-8">
+                              {{$details->accessLogBelongsToAtypeOfVisitor->type}}
+                            </div>
+                          </div>
+
+
+                          <div class="row">
+                            <div class="col-md-4">
+                              Approved By: 
+                            </div>
+                            <div class="col-md-8">
+                              {{$details->accessLogHasOneApprover->firstName. '  '.$details->accessLogHasOneApprover->secondName }}
+                            </div>
+                          </div>
+                          
+                          <div class="row">
+                            <div class="col-md-4">
+                              Photo: 
+                            </div>
+                            <div class="col-md-8">
+                              <img src="{{$details->accessLogBelongsToVisitor->photoUrl}}" alt="">
+                            </div>
+                          </div>
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-info fa fa-times" data-dismiss="modal"> Close</button>
+                          <button type="button" class=" fa fa-sign-out btn btn-danger"> Check Out.</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  @endif
+
                   @foreach ($errors->all() as $error)
             
                   <div role="alert" class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span id="text">{{$error}}</div>

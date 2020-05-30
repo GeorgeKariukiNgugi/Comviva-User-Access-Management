@@ -34,3 +34,7 @@ Route::post('/postVisitorSearch','Visitors@searchForVisitors');
 // ! this route is used to post the visitors after searching. 
 
 Route::post('/checkInVisitor','Visitors@checkInVisitor');
+
+// ! this route is used to get the checking out page of vivitors. 
+
+Route::get('/checkingOutUsers','Visitors@checkingOutVisitorsGetFunction');
