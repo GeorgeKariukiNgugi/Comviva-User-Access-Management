@@ -28,6 +28,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+        
 </head>
 
 <body class="hold-transition  skin-blue sidebar-mini">
@@ -96,15 +97,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{asset('interface\bower_components\select2\dist\js\select2.full.min.js')}}"></script>
 <script src="{{asset('js\searchCreteria.js')}}"></script>
 <script src="{{asset('js\closingModal.js')}}"></script>
-
+<script src="{{asset('js\checkingOutUserModal.js')}}"></script>
 <script src="{{asset('interface\bower_components\datatables.net\js\jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('interface\bower_components\datatables.net-bs\js\dataTables.bootstrap.min.js')}}"></script>
 <script src="{{asset('interface\dist\js\adminlte.min.js')}}"></script>
 <script>
-  // In your Javascript (external .js resource or <script> tag)
-// $(document).ready(function() {
-//     $('.js-example-basic-single').select2();
-// });
 $(function () {
     //Initialize Select2 Elements
     $('.select2').select2()
@@ -119,6 +116,9 @@ $(function () {
       'autoWidth'   : false
     }) 
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+@yield('charts')
 @include('sweetalert::alert')
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the

@@ -38,3 +38,9 @@ Route::post('/checkInVisitor','Visitors@checkInVisitor');
 // ! this route is used to get the checking out page of vivitors. 
 
 Route::get('/checkingOutUsers','Visitors@checkingOutVisitorsGetFunction');
+
+Route::post('/checkingOutVisitor','Visitors@checkingOutVisitorPostFunction');
+
+// ! this route is used to get the trends for the weeks.
+
+Route::get('/trends','Visitors@gettingtrends');

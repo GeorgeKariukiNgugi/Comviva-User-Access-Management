@@ -31,8 +31,7 @@
                 <button type="submit" class=" fa fa-search btn btn-block btn-success btn-lg">  Search Visitor.</button>              
           </div>   
         </div>
-      </form>
-
+      </form>      
         {{-- <div class="row">         --}}
           @if (session('searchResult'))
           @php
@@ -53,7 +52,7 @@
 
             
             <!-- /.box-header -->
-            <h4 class="text-center">Results for search  <span style="color:blue; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"> {{session('names')}} </span></h4>
+            <h4 class="text-center"><span style="color:blue; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"> {{session('names')}} </span></h4>
           <table id="example1" class="table table-bordered table-striped">
             <thead>
             <tr>

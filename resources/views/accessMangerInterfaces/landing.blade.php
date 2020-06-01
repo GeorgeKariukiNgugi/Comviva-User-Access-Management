@@ -8,7 +8,7 @@
 <section class="content">
   
   
-  <form action="/registerVisitor" method="POST" enctype="multipart/form-data">
+  
     {{ csrf_field() }}
     <div class="row">
       <div class="col-md-9">
@@ -19,6 +19,10 @@
             <div class="box-body">
               <div class="row">
                 <div class="col-md-6 col-md-offset-3">
+
+                  @if (session('checkedOut'))
+                  <div role="alert" class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span class="text-center" id="text">{{ session('checkedOut') }}</div>
+                  @endif
 
                   @if (session('status'))
                         <div role="alert" class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span id="text">{{ session('status') }}</div>
@@ -118,8 +122,12 @@
 
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-info fa fa-times" data-dismiss="modal"> Close</button>
-                          <button type="button" class=" fa fa-sign-out btn btn-danger"> Check Out.</button>
+                          <button type="button" class="btn btn-info fa fa-times pull-left" data-dismiss="modal"> Close</button>
+                          <form action="/checkingOutVisitor" method="POST">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="idOfCheckedOutVisitor" value="{{$details->id}}">
+                            <button type="submit" class=" fa fa-sign-out btn btn-danger"> Check Out.</button>
+                          </form>                          
                         </div>
                       </div>
                     </div>
@@ -132,6 +140,8 @@
                   @endforeach
                 </div>
               </div>
+              <form action="/registerVisitor" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">

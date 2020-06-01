@@ -9,10 +9,20 @@ use App\AccessLog;
 use Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Company;
+use App\Charts\Charts;
 class Visitors extends Controller
 {
     // ! this function is used to handle the registering of new visitors.
     public function RegisteringVisitors(visitorRegistration $request ){
+
+        // ! checking to see if the visitor is already logged In.
+
+        $visitorPresent = Visitor::where('idNo',$request->idNumber)->get();
+
+        if (count($visitorPresent) > 0) {
+            $company = Company::all();   
+            return redirect('/regularVisitor')->with(['company'=>$company,'searchResult'=>$visitorPresent, 'names'=>'The Visitor With The Id Of '. $request->idNumber. ' Has Been Registered, You Can Check Them Directly.']);
+        }
 
         $visitor = new Visitor();
         $visitor->firstName =   $request->firstName;
@@ -59,7 +69,7 @@ class Visitors extends Controller
             case 1:
                 # code...
                 $visitorSearchResult = Visitor::where('idNo',$request->searchText)->get();                 
-                $nameValue = 'National Id of  '.$request->searchText;                         
+                $nameValue = 'Results for search National Id of  '.$request->searchText;                         
                 break;
             case 2:
 
@@ -70,14 +80,14 @@ class Visitors extends Controller
                                               ->orWhere('secondName','like',$request->searchText.'%')
                                               ->orWhere('secondName','like','%'.$request->searchText.'%')
                                               ->get();
-                 $nameValue = 'Name Id of  '.$request->searchText;                                                               
+                 $nameValue = ' Results for search  Name Id of  '.$request->searchText;                                                               
                 break;
                 # code...
                 break;
             case 3:
 
                 $visitorSearchResult = Visitor::where('address',$request->searchText)->get();
-                $nameValue = 'Address Id of  '.$request->searchText;                                           
+                $nameValue = ' Results for search  Address Id of  '.$request->searchText;                                           
                 break;
                 # code...
                 break;
@@ -127,5 +137,27 @@ class Visitors extends Controller
         $visitorsNotLoggedOut = AccessLog::whereNull('TimeOut')->get();
         return view('accessMangerInterfaces.checkingOutVisitors')->with('visitors',$visitorsNotLoggedOut);
         
+    }
+
+    public function checkingOutVisitorPostFunction(Request $request){
+        
+        $checkingOutUsers = AccessLog::where('id',$request->idOfCheckedOutVisitor)->get();  
+              foreach ($checkingOutUsers as $checkingOutUser) {
+                  # code...
+                  $nameOfUser = $checkingOutUser->accessLogBelongsToVisitor->firstName. '  '. $checkingOutUser->accessLogBelongsToVisitor->secondName;
+                  $checkingOutUser->TimeOut = now();
+                  $checkingOutUser->checkedOutById = Auth::user()->id;
+                  $checkingOutUser->save();
+              }
+              Alert::success($nameOfUser.'   Visitor Has Successfully been Checked Out.', '');
+              return back()->with('checkedOut','The Visitor  '.$nameOfUser. '  Has Successfully Been Checked out.');
+    }
+
+    public function gettingtrends(){
+        
+        $chart = new Charts;
+        $chart->labels(['Jan', 'Feb', 'Mar']);
+        $chart->dataset('Users by trimester', 'line', [10, 25, 13]);
+        return view('accessMangerInterfaces.trends',['chart'=>$chart]);
     }
 }
