@@ -22,7 +22,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{asset('interface\dist\css\skins\skin-blue.min.css')}}"> 
   <link rel="stylesheet" href="{{asset('select2\dist\css\select2.min.css')}}">  
   <link rel="stylesheet" href="{{asset('interface\bower_components\select2\dist\css\select2.min.css')}}">
-
+  <link rel="stylesheet" href="{{asset('interface\bower_components\bootstrap-datepicker\dist\css\bootstrap-datepicker.min.css')}}">
   
 
   <!-- Google Font -->
@@ -101,9 +101,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{asset('interface\bower_components\datatables.net\js\jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('interface\bower_components\datatables.net-bs\js\dataTables.bootstrap.min.js')}}"></script>
 <script src="{{asset('interface\dist\js\adminlte.min.js')}}"></script>
+<script src="{{asset('interface\bower_components\bootstrap-datepicker\dist\js\bootstrap-datepicker.min.js')}}"></script>
 <script>
 $(function () {
     //Initialize Select2 Elements
+    $('#datepicker').datepicker({
+      autoclose: true
+    })
     $('.select2').select2()
     })   
     $('#example1').DataTable()
