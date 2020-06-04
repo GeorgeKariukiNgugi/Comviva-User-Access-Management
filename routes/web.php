@@ -44,3 +44,11 @@ Route::post('/checkingOutVisitor','Visitors@checkingOutVisitorPostFunction');
 // ! this route is used to get the trends for the weeks.
 
 Route::get('/trends','Visitors@gettingtrends');
+
+// ! thi route is used to get the reports page.
+
+Route::get('/reports','reportsGeneration@gettingReportPage');
+
+// ! this route i sused to post and download the report. 
+
+Route::post('/postingReport','reportsGeneration@postingAndGeneratingReports');

@@ -10,6 +10,8 @@ use Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Company;
 use App\Charts\Charts;
+use Carbon\Carbon;
+use App\VisitorType;
 class Visitors extends Controller
 {
     // ! this function is used to handle the registering of new visitors.
@@ -102,8 +104,10 @@ class Visitors extends Controller
 
     public function checkInVisitor(Request $request){
 
-        $checkingToSeeIfTheVisitorIsLoggedIn = AccessLog::where('visitorId',$request->idOfVisitor)->get();
-        if (count($checkingToSeeIfTheVisitorIsLoggedIn) < 1) {
+        $checkingToSeeIfTheVisitorIsLoggedIn = AccessLog::where('visitorId',$request->idOfVisitor)
+                                                        ->whereNull('TimeOut')
+                                                        ->get();
+        if (count($checkingToSeeIfTheVisitorIsLoggedIn) == 0) {
 
             $loggingVisitor = new AccessLog();
             $loggingVisitor->visitorId = $request->idOfVisitor;
@@ -157,7 +161,224 @@ class Visitors extends Controller
         
         $chart = new Charts;
         $chart->labels(['Jan', 'Feb', 'Mar']);
-        $chart->dataset('Users by trimester', 'line', [10, 25, 13]);
-        return view('accessMangerInterfaces.trends',['chart'=>$chart]);
+        $chart->dataset('Users by trimester', 'bar', [10, 25, 13]);
+
+        // ! creating the bar charts for each and every month of the year.
+
+        $groupedCompanyBarChart = new Charts;
+       
+
+        $groupedTypeOfVisitorBarChart = new Charts;   
+
+        $groupedBarChartForCompanyBasedOnMonths = new Charts;
+
+        // ! getting companies . 
+        $companies = Company::all();
+
+        // ! getting visitor types. 
+
+        $visitorTypes = VisitorType::all();
+
+        $borderColors = [
+            "rgba(255, 99, 132, 1.0)",
+            "rgba(22,160,133, 1.0)",
+            "rgba(255, 205, 86, 1.0)",
+            "rgba(51,105,232, 1.0)",
+            "rgba(244,67,54, 1.0)",
+            "rgba(34,198,246, 1.0)",
+            "rgba(153, 102, 255, 1.0)",
+            "rgba(255, 159, 64, 1.0)",
+            "rgba(233,30,99, 1.0)",
+            "rgba(205,220,57, 1.0)"
+        ];
+        $fillColors = [
+            "rgba(255, 99, 132, 0.2)",
+            "rgba(22,160,133, 0.2)",
+            "rgba(255, 205, 86, 0.2)",
+            "rgba(51,105,232, 0.2)",
+            "rgba(244,67,54, 0.2)",
+            "rgba(34,198,246, 0.2)",
+            "rgba(153, 102, 255, 0.2)",
+            "rgba(255, 159, 64, 0.2)",
+            "rgba(233,30,99, 0.2)",
+            "rgba(205,220,57, 0.2)"
+
+        ];
+
+        // dd(gettype($month));
+        // $month +=0;
+        $month = Carbon::now()->month;
+        $number = $month;
+        // dd($month);
+        for ($i=1; $i <= $number; $i++) { 
+            # code...
+            # code...            
+            $companiesCount = array();
+            $typeOfVisitorsCount = array();
+            $companiesNames = array();
+            $visitorsNames = array();
+
+            if (count(AccessLog::whereMonth('timeIn',$i)->get()) < 1) {
+                # code...
+                    array_push($companiesCount,0);
+                    array_push($companiesNames,'N/A');
+                    array_push($typeOfVisitorsCount,0);
+                    array_push($visitorsNames,'N/A');
+
+            } else {
+                
+
+                foreach ($companies as $company) {
+                    # code...
+                    $monthRecords = AccessLog::whereMonth('created_at',$i)
+                                             ->where('companyId',$company->id)    
+                                            ->get();
+                    $numberOfCompanyVisitsInMonth = count($monthRecords);
+                    array_push($companiesCount,$numberOfCompanyVisitsInMonth);
+                    array_push($companiesNames,$company->name);
+                }
+                
+                
+
+                foreach ($visitorTypes as $visitorType) {
+                    # code...
+                    $monthRecords = AccessLog::whereMonth('created_at',$i)
+                                            ->where('typeOfVisitorId',$visitorType->id)    
+                                            ->get();
+                    $numberOfTypeOfVisitsInMonth = count($monthRecords);
+                    array_push($typeOfVisitorsCount,$numberOfTypeOfVisitsInMonth);
+                    array_push($visitorsNames,$visitorType->type);
+                }                                                  
+        }            
+
+                    switch ($i) {
+                        case 1:  
+                            $month = 'January';                  
+                        break;
+                        case 2: 
+                            $month = 'February';
+                        break;
+                        case 3: 
+                            $month = 'March';
+                        break;
+                        case 4: 
+                            $month = 'April';
+                        break;
+                        case 5: 
+                            $month = 'May';
+                        break;
+                        case 6: 
+                            $month = 'June';
+                        break;
+                        case 7: 
+                            $month = 'July';
+                        break;
+                        case 8: 
+                            $month = 'Aughust';
+                        break;
+                        case 9: 
+                            $month = 'September';
+                        break;
+                        case 10: 
+                            $month = 'October';
+                        break;
+                        case 11:
+                            $month = 'November';
+                        break;               
+                        case 12: 
+                            $month = 'December';
+                        break;
+
+                        default:
+                            # code...
+                            $month = '0000';
+                            break;
+                    }  
+                    
+                    
+                    $groupedCompanyBarChart->dataset($month,'bar',$companiesCount)
+                                            ->color($borderColors[$i])
+                                            ->backgroundcolor($fillColors[$i]);
+
+                    $groupedTypeOfVisitorBarChart->dataset($month,'bar',$typeOfVisitorsCount)
+                                                 ->color($borderColors[$i])
+                                                 ->backgroundcolor($fillColors[$i]);
+
+                    $groupedCompanyBarChart->labels($companiesNames);
+                    $groupedTypeOfVisitorBarChart->labels($visitorsNames);
+        }
+        
+        // ! this ection is used to create the next set of graphs;
+
+        foreach ($companies as $company) {
+            # code...
+            $numberOfVisitorsThatVisitedTheCompanyPerMonth = array();
+            $monthsArray = array();
+            for ($j=1; $j <= $number; $j++){
+                
+                $accessLogWithCompanyId = AccessLog::where('companyId','=',$company->id)
+                                                    ->whereMonth('timeIn',$j)
+                                                    ->get();
+                if (count($accessLogWithCompanyId) == 0) {
+                    # code...
+                    // ! if tere is no record that is retrieved: 
+                        array_push($numberOfVisitorsThatVisitedTheCompanyPerMonth,0.1);
+                } else {
+                    # code...
+                    // ! if there are reords that are retrieved.
+                    array_push($numberOfVisitorsThatVisitedTheCompanyPerMonth,count($accessLogWithCompanyId));
+                }                  
+                switch ($j) {
+                    case 1:                          
+                        array_push($monthsArray,'January');                
+                    break;
+                    case 2:                         
+                        array_push($monthsArray,'February');  
+                    break;
+                    case 3:                         
+                        array_push($monthsArray,'March');
+                    break;
+                    case 4: 
+                        array_push($monthsArray,'April');                        
+                    break;
+                    case 5:                         
+                        array_push($monthsArray,'May');
+                    break;
+                    case 6:                         
+                        array_push($monthsArray,'June');
+                    break;
+                    case 7: 
+                        array_push($monthsArray,'July');                        
+                    break;
+                    case 8: 
+                        array_push($monthsArray,'Aughust');                        
+                    break;
+                    case 9: 
+                        array_push($monthsArray,'September');                        
+                    break;
+                    case 10: 
+                        array_push($monthsArray,'October');                        
+                    break;
+                    case 11:
+                        array_push($monthsArray,'November');                        
+                    break;               
+                    case 12: 
+                        array_push($monthsArray,'December');                        
+                    break;
+
+                    default:
+                        # code...
+                        $month = '0000';
+                        break;
+                }              
+            }
+            $groupedBarChartForCompanyBasedOnMonths->dataset($company->name,'bar',$numberOfVisitorsThatVisitedTheCompanyPerMonth)
+                                                   ->color($borderColors[$company->id])
+                                                   ->backgroundcolor($fillColors[$company->id]);
+            $groupedBarChartForCompanyBasedOnMonths->labels($monthsArray);                        
+        }
+
+        // dd(Carbon::now()->month);
+        return view('accessMangerInterfaces.trends',['chart'=>$chart,'groupedTypeOfVisitorBarChart'=>$groupedTypeOfVisitorBarChart,'groupedCompanyBarChart'=>$groupedCompanyBarChart,'groupedBarChartForCompanyBasedOnMonths'=>$groupedBarChartForCompanyBasedOnMonths]);
     }
 }

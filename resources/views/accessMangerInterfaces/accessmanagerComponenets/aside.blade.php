@@ -19,23 +19,12 @@
         <li class="active"><a href="/home"><i class="fa fa-home"></i> <span>Home</span></a></li>
         <li ><a href="/checkingOutUsers"><i class="fa fa-user-plus"></i> <span>Check Out Visitors.</span></a></li>
         <li><a href="/regularVisitor"><i class="fa fa-search"></i> <span>Search For Visitors</span></a></li>
-        {{-- <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Trends</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
-          </ul>
-        </li> --}}
         <li class="header">TRENDS.</li>
 
-        <li class=""><a href="/trends"><i class="fa fa-bar-chart"></i> <span>Weekly Trends.</span></a></li>
+        <li class=""><a href="/trends"><i class="fa fa-bar-chart"></i> <span> Trends.</span></a></li>
 
         <li class="header">REPORTS.</li>
-        <li class=""><a href="/home"><i class="fa fa-book"></i> <span>Weekly Reports.</span></a></li>
+        <li class=""><a href="/reports"><i class="fa fa-book"></i> <span> Reports.</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>

@@ -75,7 +75,7 @@
                             </div>
                             <div class="col-md-8">
                               @php
-                                   $dateToFormat = date_create($details->accessLogBelongsToVisitor->timeIn);
+                                   $dateToFormat = date_create($details->timeIn);
                                    $date = date_format($dateToFormat, "D-d-F-Y H:i:s");  
 
                               @endphp
