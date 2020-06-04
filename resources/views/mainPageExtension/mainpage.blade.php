@@ -23,6 +23,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{asset('select2\dist\css\select2.min.css')}}">  
   <link rel="stylesheet" href="{{asset('interface\bower_components\select2\dist\css\select2.min.css')}}">
   <link rel="stylesheet" href="{{asset('interface\bower_components\bootstrap-datepicker\dist\css\bootstrap-datepicker.min.css')}}">
+  <link rel="stylesheet" href="{{asset('interface\bower_components\bootstrap-daterangepicker\daterangepicker.css')}}">
   
 
   <!-- Google Font -->
@@ -102,12 +103,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{asset('interface\bower_components\datatables.net-bs\js\dataTables.bootstrap.min.js')}}"></script>
 <script src="{{asset('interface\dist\js\adminlte.min.js')}}"></script>
 <script src="{{asset('interface\bower_components\bootstrap-datepicker\dist\js\bootstrap-datepicker.min.js')}}"></script>
+<script src="{{asset('interface\bower_components\moment\min\moment.min.js')}}"></script>
+<script src="{{asset('interface\bower_components\bootstrap-daterangepicker\daterangepicker.js')}}"></script>
 <script>
 $(function () {
     //Initialize Select2 Elements
-    $('#datepicker').datepicker({
+    $('.datepicker').datepicker({
       autoclose: true
     })
+    $('#reservation').daterangepicker()
     $('.select2').select2()
     })   
     $('#example1').DataTable()
@@ -122,6 +126,7 @@ $(function () {
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+
 @yield('charts')
 @include('sweetalert::alert')
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
