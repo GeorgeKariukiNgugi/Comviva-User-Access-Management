@@ -16,7 +16,7 @@
                 <div class="input-group-addon">
                   <i class="fa fa-calendar"></i>
                 </div>
-                <input type="text" name="startDate" class="form-control pull-right datepicker" id="datepicker">
+                <input required type="text" name="startDate" class="form-control pull-right datepicker" id="datepicker">
               </div>
               <!-- /.input group -->
             </div>
@@ -29,7 +29,7 @@
               <div class="input-group-addon">
                 <i class="fa fa-calendar"></i>
               </div>
-              <input type="text" name="endDate" class="form-control pull-right datepicker" id="datepicker">
+              <input required type="text" name="endDate" class="form-control pull-right datepicker" id="datepicker">
             </div>
             <!-- /.input group -->
           </div>
