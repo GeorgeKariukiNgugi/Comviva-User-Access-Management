@@ -52,3 +52,19 @@ Route::get('/reports','reportsGeneration@gettingReportPage');
 // ! this route i sused to post and download the report. 
 
 Route::post('/postingReport','reportsGeneration@postingAndGeneratingReports');
+
+// ! this route is used to get the page on managing companies.
+
+Route::get('/manageCompanies','manageCompanies@gettingManaeCompniesPage');
+
+// ! this is the route that will be used to delete the Companies.
+
+Route::post('/deleteCompany','manageCompanies@deleteCompanies');
+
+// ! this route is used to add a company to the DB.
+
+Route::post('/addCompany','manageCompanies@addCompany');
+
+// ! this route is used to edit the company details.
+
+Route::post('/editCompany','manageCompanies@editCompanies');

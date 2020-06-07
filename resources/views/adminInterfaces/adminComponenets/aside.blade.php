@@ -31,7 +31,7 @@
       
 
       <li class="header">MANAGE COMPANIES.</li>
-      <li class=""><a href="/reports"><i class="fa fa-building"></i> <span> Manage Companies.</span></a></li>
+      <li class=""><a href="/manageCompanies"><i class="fa fa-building"></i> <span> Manage Companies.</span></a></li>
     </ul>
     <!-- /.sidebar-menu -->
   </section>
