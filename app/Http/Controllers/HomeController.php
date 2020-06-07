@@ -30,8 +30,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $role = Role::create(['name' => 'accessmanager']);
-        // Auth::user()->assignRole('accessmanager');
+        // $role = Role::create(['name' => 'admin']);
+        // Auth::user()->assignRole('admin');
 
 
         $roles = Auth::user()->getRoleNames();        
@@ -70,23 +70,22 @@ class HomeController extends Controller
             switch ($roleForUser) {
                 case 'accessmanager':
                     # code...                    
-                    return view('accessMangerInterfaces.landing',['name'=>$nameOfUser,'date'=>$dateToUser,
-                                // 'company'=>$typeOfCompanyName,'cmpanyId'=>$typeOfCompanyId
+                    return view('accessMangerInterfaces.landing',['name'=>$nameOfUser,'date'=>$dateToUser,                                
                                 'company'=>$company
                     ]);
                     break;
                     case 'admin':                        
                         return view('adminInterfaces.landing',['name'=>$nameOfUser,'date'=>$dateToUser,
-                                    // 'company'=>$typeOfCompanyName,'cmpanyId'=>$typeOfCompanyId
+                        'company'=>$company
                         ]);
                     break;
                 default:
-                    return Auth::user()->id;
+                Alert::danger(Auth::users()->firstName.'   '.Auth::users()->secondName.'  It Seems you are either Not Assigned A Role Or Multiple Roles, Contact Admin For Details.', '');
                     # code...
                     break;
             }
         } else {
-            return Auth::user()->id;
+            Alert::danger(Auth::users()->firstName.'   '.Auth::users()->secondName.'  It Seems you are either Not Assigned A Role Or Multiple Roles, Contact Admin For Details.', '');
         }        
     }
 }

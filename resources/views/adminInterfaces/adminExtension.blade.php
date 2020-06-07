@@ -1,11 +1,11 @@
 @extends('mainPageExtension.mainPage')
 
 @section('navigation')
-    @include('accessMangerInterfaces.accessmanagerComponenets.navigation')
+    @include('adminInterfaces.adminComponenets.navigation')
 @endsection
 
 @section('aside')
-    @include('accessMangerInterfaces.accessmanagerComponenets.aside')
+    @include('adminInterfaces.adminComponenets.aside')
 @endsection
 
 @section('mainContentHeader')
@@ -17,5 +17,5 @@
 @endsection
 
 @section('footer')
-    @include('accessMangerInterfaces.accessmanagerComponenets.footer')
+    @include('adminInterfaces.adminComponenets.footer')
 @endsection

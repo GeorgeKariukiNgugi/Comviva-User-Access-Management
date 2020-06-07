@@ -6,13 +6,46 @@ use App\AccessLog;
 use App\Company;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Auth;
+use Spatie\Permission\Traits\HasRoles;
 
 class reportsGeneration extends Controller
 {
     //
     public function gettingReportPage(){
-        $companies = Company::all();
-        return view('accessMangerInterfaces.reports',['company'=>$companies]);
+        $companies = Company::all();        
+        $roles = Auth::user()->getRoleNames();
+        $numberOfRoles = count($roles);
+        if ($numberOfRoles == 1) {
+            # code...
+            $roleForUser = null;
+            foreach ($roles as $role) {
+                # code...
+                $roleForUser = $role;
+            }
+
+
+            switch ($roleForUser) {
+                case 'accessmanager':
+                    # code...                                        
+                    return view('accessMangerInterfaces.reports',['company'=>$companies]);
+                    break;
+                    case 'admin':                                                
+                        // return view('adminInterfaces.checkingOutVisitors')->with('visitors',$visitorsNotLoggedOut);
+                        return view('adminInterfaces.reports',['company'=>$companies]);
+                    break;
+                default:                
+                return view('accessMangerInterfaces.reports',['company'=>$companies]);
+                    # code...
+                    break;
+            }
+
+
+        } else {
+            # code...
+            return back();
+            Alert::danger(Auth::users()->firstName.'   '.Auth::users()->secondName.'  It Seems you are either Not Assigned A Role Or Multiple Roles, Contact Admin For Details.', '');
+        }
     }
 
     public function postingAndGeneratingReports(Request $request){

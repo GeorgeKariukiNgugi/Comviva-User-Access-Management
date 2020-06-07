@@ -12,8 +12,10 @@ use App\Company;
 use App\Charts\Charts;
 use Carbon\Carbon;
 use App\VisitorType;
+use Spatie\Permission\Traits\HasRoles;
 class Visitors extends Controller
 {
+    use HasRoles;
     // ! this function is used to handle the registering of new visitors.
     public function RegisteringVisitors(visitorRegistration $request ){
 
@@ -58,7 +60,39 @@ class Visitors extends Controller
 
     public function getRegularVisitors(){
 
-        return view('accessMangerInterfaces.regularVisitor');
+        $roles = Auth::user()->getRoleNames();
+        $numberOfRoles = count($roles);
+        if ($numberOfRoles == 1) {
+            # code...
+            $roleForUser = null;
+            foreach ($roles as $role) {
+                # code...
+                $roleForUser = $role;
+            }
+
+
+            switch ($roleForUser) {
+                case 'accessmanager':
+                    # code...                    
+                    return view('accessMangerInterfaces.regularVisitor');
+                    break;
+                    case 'admin':                        
+                        return view('adminInterfaces.regularVisitor');
+                    break;
+                default:
+                return view('accessMangerInterfaces.regularVisitor');
+                    # code...
+                    break;
+            }
+
+
+        } else {
+            # code...
+            return back();
+            Alert::danger(Auth::users()->firstName.'   '.Auth::users()->secondName.'  It Seems you are either Not Assigned A Role Or Multiple Roles, Contact Admin For Details.', '');
+        }
+        
+        
 
     }
 
@@ -139,7 +173,40 @@ class Visitors extends Controller
 
     public function checkingOutVisitorsGetFunction(){
         $visitorsNotLoggedOut = AccessLog::whereNull('TimeOut')->get();
-        return view('accessMangerInterfaces.checkingOutVisitors')->with('visitors',$visitorsNotLoggedOut);
+
+        $roles = Auth::user()->getRoleNames();
+        $numberOfRoles = count($roles);
+        if ($numberOfRoles == 1) {
+            # code...
+            $roleForUser = null;
+            foreach ($roles as $role) {
+                # code...
+                $roleForUser = $role;
+            }
+
+
+            switch ($roleForUser) {
+                case 'accessmanager':
+                    # code...                                        
+                    return view('accessMangerInterfaces.checkingOutVisitors')->with('visitors',$visitorsNotLoggedOut);
+                    break;
+                    case 'admin':                                                
+                        return view('adminInterfaces.checkingOutVisitors')->with('visitors',$visitorsNotLoggedOut);
+                    break;
+                default:                
+                return view('accessMangerInterfaces.checkingOutVisitors')->with('visitors',$visitorsNotLoggedOut);
+                    # code...
+                    break;
+            }
+
+
+        } else {
+            # code...
+            return back();
+            Alert::danger(Auth::users()->firstName.'   '.Auth::users()->secondName.'  It Seems you are either Not Assigned A Role Or Multiple Roles, Contact Admin For Details.', '');
+        }
+
+        
         
     }
 
@@ -379,6 +446,39 @@ class Visitors extends Controller
         }
 
         // dd(Carbon::now()->month);
-        return view('accessMangerInterfaces.trends',['chart'=>$chart,'groupedTypeOfVisitorBarChart'=>$groupedTypeOfVisitorBarChart,'groupedCompanyBarChart'=>$groupedCompanyBarChart,'groupedBarChartForCompanyBasedOnMonths'=>$groupedBarChartForCompanyBasedOnMonths]);
+
+        $roles = Auth::user()->getRoleNames();
+        $numberOfRoles = count($roles);
+        if ($numberOfRoles == 1) {
+            # code...
+            $roleForUser = null;
+            foreach ($roles as $role) {
+                # code...
+                $roleForUser = $role;
+            }
+
+
+            switch ($roleForUser) {
+                case 'accessmanager':
+                    # code...                                        
+                    return view('accessMangerInterfaces.trends',['chart'=>$chart,'groupedTypeOfVisitorBarChart'=>$groupedTypeOfVisitorBarChart,'groupedCompanyBarChart'=>$groupedCompanyBarChart,'groupedBarChartForCompanyBasedOnMonths'=>$groupedBarChartForCompanyBasedOnMonths]);
+                    break;
+                    case 'admin':                                                
+                        // return view('adminInterfaces.checkingOutVisitors')->with('visitors',$visitorsNotLoggedOut);
+                        return view('adminInterfaces.trends',['chart'=>$chart,'groupedTypeOfVisitorBarChart'=>$groupedTypeOfVisitorBarChart,'groupedCompanyBarChart'=>$groupedCompanyBarChart,'groupedBarChartForCompanyBasedOnMonths'=>$groupedBarChartForCompanyBasedOnMonths]);
+                    break;
+                default:                
+                return view('accessMangerInterfaces.trends',['chart'=>$chart,'groupedTypeOfVisitorBarChart'=>$groupedTypeOfVisitorBarChart,'groupedCompanyBarChart'=>$groupedCompanyBarChart,'groupedBarChartForCompanyBasedOnMonths'=>$groupedBarChartForCompanyBasedOnMonths]);
+                    # code...
+                    break;
+            }
+
+
+        } else {
+            # code...
+            return back();
+            Alert::danger(Auth::users()->firstName.'   '.Auth::users()->secondName.'  It Seems you are either Not Assigned A Role Or Multiple Roles, Contact Admin For Details.', '');
+        }
+        
     }
 }
