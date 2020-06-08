@@ -68,3 +68,13 @@ Route::post('/addCompany','manageCompanies@addCompany');
 // ! this route is used to edit the company details.
 
 Route::post('/editCompany','manageCompanies@editCompanies');
+
+Route::get('/manageUsers','ManageUsers@managingUsers');
+
+Route::post('/addNewUser','ManageUsers@addUser');
+
+Route::post('/editUser','ManageUsers@editUser');
+
+Route::post('/deleteuser','ManageUsers@deleteUsers');
+
+

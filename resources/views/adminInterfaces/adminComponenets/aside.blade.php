@@ -27,7 +27,7 @@
       <li class=""><a href="/reports"><i class="fa fa-book"></i> <span> Reports.</span></a></li>
 
       <li class="header">MANAGE USERS.</li>
-      <li class=""><a href="/reports"><i class="fa fa-users"></i> <span> Manage Users.</span></a></li>
+      <li class=""><a href="/manageUsers"><i class="fa fa-users"></i> <span> Manage Users.</span></a></li>
       
 
       <li class="header">MANAGE COMPANIES.</li>
