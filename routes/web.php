@@ -55,19 +55,19 @@ Route::post('/postingReport','reportsGeneration@postingAndGeneratingReports');
 
 // ! this route is used to get the page on managing companies.
 
-Route::get('/manageCompanies','manageCompanies@gettingManaeCompniesPage');
+Route::get('/manageCompanies','ManageCompanies@gettingManaeCompniesPage');
 
 // ! this is the route that will be used to delete the Companies.
 
-Route::post('/deleteCompany','manageCompanies@deleteCompanies');
+Route::post('/deleteCompany','ManageCompanies@deleteCompanies');
 
 // ! this route is used to add a company to the DB.
 
-Route::post('/addCompany','manageCompanies@addCompany');
+Route::post('/addCompany','ManageCompanies@addCompany');
 
 // ! this route is used to edit the company details.
 
-Route::post('/editCompany','manageCompanies@editCompanies');
+Route::post('/editCompany','ManageCompanies@editCompanies');
 
 Route::get('/manageUsers','ManageUsers@managingUsers');
 
