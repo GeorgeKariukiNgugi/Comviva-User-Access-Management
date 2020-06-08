@@ -1,4 +1,4 @@
-@extends('mainPageExtension.mainPage')
+@extends('mainPageExtension.mainpage')
 
 @section('navigation')
     @include('accessMangerInterfaces.accessmanagerComponenets.navigation')
