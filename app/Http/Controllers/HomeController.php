@@ -30,11 +30,19 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $role = Role::create(['name' => 'admin']);
-        // Auth::user()->assignRole('admin');
 
+        // ! getting to see if the password has been changed. 
 
-        $roles = Auth::user()->getRoleNames();        
+        $passwordChanged = Auth::user()->passwordChanged;
+
+        if($passwordChanged == 0){
+
+            // return "This is to be changed";
+            return view('auth.changeInitialPassword');
+        }
+
+        $roles = Auth::user()->getRoleNames();   
+
         $nameOfUser = Auth::user()->firstName.' '.Auth::user()->secondName;
         if (Auth::user()->created_at == 'NULL') {
             # code...
@@ -46,16 +54,7 @@ class HomeController extends Controller
         
         // ! getting the type of visitors that are involved in the system. 
 
-        // $typeOfCompanyName = array();
-        // $typeOfCompanyId = array();
         $company = Company::all();                
-        // foreach ($company as $company) {
-        //     # code...
-        //     array_push($typeOfCompanyName,$company->name);
-        //     array_push($typeOfCompanyId,$company->id);
-        // }
-
-
 
         $numberOfRoles = count($roles);
 

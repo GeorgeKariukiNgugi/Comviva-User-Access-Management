@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Hash;
+use Auth;
 class ManageUsers extends Controller
 {
     public function managingUsers(){
@@ -25,12 +27,13 @@ class ManageUsers extends Controller
         $newUser->IdNo = $request->idNumber;
         $newUser->logIn_ip = '192.168.202.1';
         $newUser->password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
+        $newUser->passwordChanged  = 0;
 
         $newUser->save();
 
         $newUser->syncRoles([$request->roles]);
         Alert::success($newUser->firstName .' '.$newUser->secondName.'Has SuccessfullyBeen Added.', '');
-        return back()->with('added', $newUser->firstName .' '.$newUser->secondName.' Has SuccessfullyBeen Added.');       
+        return back()->with('added', $newUser->firstName .' '.$newUser->secondName.' Has SuccessfullyBeen Added. Use \'password\' as initial password to change it.');       
     }
 
     // ! editing users.
@@ -72,4 +75,41 @@ class ManageUsers extends Controller
         return back()->with('added', $name.' Has SuccessfullyBeen Deleted.'); 
 
     }
+
+    // ! this function is used to change the password if the user has a default password. 
+
+    public function changeInitialPassword(Request $request){
+        
+        // ! checking to see if the password typed and the re-typed passwords are the same.
+
+        $password = $request->password;
+        $reTypedPassword = $request->retypePassword;
+
+        if($password != $reTypedPassword){
+
+            return back()->with('error','The Password And The Retyped Password Are Not The Same.');
+            
+        }
+        else{
+
+            // return "password do match.";
+            // ! saving the password that is new. 
+
+            $idOfUser = Auth::user()->id; 
+            $users = User::where('id',$idOfUser)->get();
+
+            foreach ($users as $user) {
+                # code...
+                $user->password = Hash::make($request->password);
+                $user->passwordChanged = 1;
+                $user->save();
+            }
+
+
+            return redirect('/');
+
+        }        
+
+    }
+
 }

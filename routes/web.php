@@ -77,4 +77,6 @@ Route::post('/editUser','ManageUsers@editUser');
 
 Route::post('/deleteuser','ManageUsers@deleteUsers');
 
+Route::post('/resettingPassword','ManageUsers@changeInitialPassword');
+
 
