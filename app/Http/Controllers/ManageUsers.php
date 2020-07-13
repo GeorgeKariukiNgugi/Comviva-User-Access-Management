@@ -61,6 +61,8 @@ class ManageUsers extends Controller
 
     public function deleteUsers(Request $request){
 
+        
+
         $deleteUsers = User::where('id',$request->idOfUser)->get();
 
         $name = null;

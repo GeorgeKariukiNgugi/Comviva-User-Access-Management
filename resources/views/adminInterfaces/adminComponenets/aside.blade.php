@@ -32,6 +32,9 @@
 
       <li class="header">MANAGE COMPANIES.</li>
       <li class=""><a href="/manageCompanies"><i class="fa fa-building"></i> <span> Manage Companies.</span></a></li>
+
+      <li class="header">MANAGE COMPANY POINTS PERSONS.</li>
+      <li class=""><a href="/manageCompanyPointsPersons"><i class="fa fa-building"></i> <span> Manage Companies Points Persons.</span></a></li>
     </ul>
     <!-- /.sidebar-menu -->
   </section>

@@ -10,6 +10,7 @@ use Spatie\Permission\Models\Permission;
 use App\User;
 use App\VisitorType;
 use App\Company;
+use App\CompanyEmployee;
 class HomeController extends Controller
 {
     use HasRoles;
@@ -40,7 +41,7 @@ class HomeController extends Controller
             // return "This is to be changed";
             return view('auth.changeInitialPassword');
         }
-
+        $nameOfUser = Auth::user()->firstName.' '.Auth::user()->secondName;       
         $roles = Auth::user()->getRoleNames();   
 
         $nameOfUser = Auth::user()->firstName.' '.Auth::user()->secondName;
@@ -54,7 +55,9 @@ class HomeController extends Controller
         
         // ! getting the type of visitors that are involved in the system. 
 
-        $company = Company::all();                
+        $company = Company::all();
+        $companyPointsPersons = CompanyEmployee::all();
+        $typeOfVisitors = VisitorType::all();           
 
         $numberOfRoles = count($roles);
 
@@ -70,12 +73,12 @@ class HomeController extends Controller
                 case 'accessmanager':
                     # code...                    
                     return view('accessMangerInterfaces.landing',['name'=>$nameOfUser,'date'=>$dateToUser,                                
-                                'company'=>$company
+                                'company'=>$company,'companyPointsPersons'=>$companyPointsPersons,'typeOfVisitors'=>$typeOfVisitors
                     ]);
                     break;
                     case 'admin':                        
                         return view('adminInterfaces.landing',['name'=>$nameOfUser,'date'=>$dateToUser,
-                        'company'=>$company
+                        'company'=>$company,'companyPointsPersons'=>$companyPointsPersons,'typeOfVisitors'=>$typeOfVisitors
                         ]);
                     break;
                 default:

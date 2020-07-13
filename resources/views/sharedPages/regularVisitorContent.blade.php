@@ -67,7 +67,8 @@
             <tbody>
               @php
                   $searchResult = session('searchResult');
-                  
+                  $typeOfVisitors  = session('typeOfVisitors');
+                  $companyPointsPersons = session('companyPointsPersons');
                   $startNo = 1;
               @endphp
                 @foreach ($searchResult as $item)
@@ -180,12 +181,28 @@
                                   <div class="row">
                                     <div class="col-md-6 col-md-offset-3">
                                       <div class="form-group" data-select2-id="{{"13".$item->id."visitor"}}">
-                                        <label>Type Of Visitor: </label>
-                                        <select required name="typeOfVisitor" class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="{{"1".$item->id."company"}}" tabindex="-1" aria-hidden="true">
-                                          <option selected="selected" data-select2-id="{{"40".$item->id}}" value = "1">Enquiry</option>
-                                          <option data-select2-id="{{"22".$item->id}}" value="2">Service Provision</option>
-                                          <option data-select2-id="{{"23".$item->id}}" value = "3">Meeting</option>                                             
-                                        </select>                        
+                                        <label>Type Of Visitor: </label>                                                                                                                                          
+                                        <select required name="typeOfVisitor" class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="5" tabindex="-1" aria-hidden="true">
+                                            @foreach ($typeOfVisitors as $typeOfVisitor)
+                                            <option data-select2-id="{{$typeOfVisitor->id+5674585}}" value="{{$typeOfVisitor->id}}">{{$typeOfVisitor->type}}</option>
+                                            @endforeach
+                                        </select> 
+                                       
+                                      </div>
+                                      </div>                                        
+                                  </div>
+                                  
+                                  <div class="row">
+                                    <div class="col-md-6 col-md-offset-3">
+                                      <div class="form-group" data-select2-id="{{"13".$item->id."visitor"}}">
+                                        <label>Company Points Person Attatched To: </label>                                                                                                                                          
+                                        <select required name="companyPointsPerson" class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="59" tabindex="-1" aria-hidden="true">
+                                          
+                                          @foreach ($companyPointsPersons as $persons)
+                                            <option data-select2-id="{{$persons->id+55265}}" value="{{$persons->id}}">{{$persons->employeeName}} ::: {{$persons->companyEmployeeBelongsToCompany->name}}</option>
+                                            @endforeach
+                                        </select> 
+                                       
                                       </div>
                                       </div>                                        
                                   </div>

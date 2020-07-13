@@ -79,4 +79,12 @@ Route::post('/deleteuser','ManageUsers@deleteUsers');
 
 Route::post('/resettingPassword','ManageUsers@changeInitialPassword');
 
+Route::get('/manageCompanyPointsPersons','CompanyEmployeeController@index');
+
+Route::post('/addCompanyPointsPerson','CompanyEmployeeController@store');
+
+Route::post('/updateCompanyEmployee','CompanyEmployeeController@update');
+
+Route::post('/deleteCompanyPointsPerson','CompanyEmployeeController@destroy');
+
 

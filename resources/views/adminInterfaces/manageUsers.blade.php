@@ -16,8 +16,12 @@
         <div role="alert" class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><span class="text-center" id="text">{{ session('added') }}</div>
         @endif 
         <div class="row">
-            <div class="col-md-12 ">
+            <div  class="col-md-12 ">
+              <div>
                 <button type="button" href = "#" class="btn btn-success pull-right fa fa-plus" style="text-decoration: bold;" data-toggle="modal" data-target="#adduser"> Add User</button>                
+              </div>
+
+                
 
                     {{-- This is the Modal To Add the user To The System. --}}
                     <div class="modal fade" id="adduser" style="display: none;">
@@ -231,7 +235,13 @@
 
                     </td>
                     <td>
-                        <button class="btn btn-danger fa fa-trash" href="#" data-toggle="modal" data-target="{{"#deleteuser".$user->id}}"> Delete. </button>
+
+                      @if ($user->id == Auth::user()->id)
+                      <button disabled class="btn btn-danger fa fa-trash" href="#" data-toggle="modal" data-target="{{"#deleteuser".$user->id}}"> Delete. </button>
+                      @else
+                      <button class="btn btn-danger fa fa-trash" href="#" data-toggle="modal" data-target="{{"#deleteuser".$user->id}}"> Delete. </button>
+                      @endif
+                        
                         <div class="modal fade" id="{{"deleteuser".$user->id}}">
                             <div class="modal-dialog">
                               <div class="modal-content">
@@ -252,8 +262,14 @@
                                   <button type="button" class="btn btn-info pull-left fa fa-times" data-dismiss="modal"> Close</button>
                                   <form action="/deleteuser" method="POST">
                                       {{ csrf_field() }}
-                                    <input type="hidden" name="idOfUser" value="{{$user->id}}">
-                                    <button type="submit" class="btn btn-danger fa fa-trash-o "> Delete</button>
+                                    
+                                      <input type="hidden" name="idOfUser" value="{{$user->id}}">
+
+                                      @if ($user->id == Auth::user()->id)
+                                      <button type="submit" disabled class="btn btn-danger  fa fa-trash-o "> Delete</button>
+                                      @else
+                                      <button type="submit" class="btn btn-danger fa fa-trash-o "> Delete</button>
+                                      @endif                                    
                                   </form>
                                   
                                   

@@ -12,6 +12,7 @@ use App\Company;
 use App\Charts\Charts;
 use Carbon\Carbon;
 use App\VisitorType;
+use App\CompanyEmployee;
 use Spatie\Permission\Traits\HasRoles;
 class Visitors extends Controller
 {
@@ -20,12 +21,13 @@ class Visitors extends Controller
     public function RegisteringVisitors(visitorRegistration $request ){
 
         // ! checking to see if the visitor is already logged In.
-
+        $typeOfVisitors = VisitorType::all();
+        $companyPointsPersons = CompanyEmployee::all();
         $visitorPresent = Visitor::where('idNo',$request->idNumber)->get();
 
         if (count($visitorPresent) > 0) {
             $company = Company::all();   
-            return redirect('/regularVisitor')->with(['company'=>$company,'searchResult'=>$visitorPresent, 'names'=>'The Visitor With The Id Of '. $request->idNumber. ' Has Been Registered, You Can Check Them Directly.']);
+            return redirect('/regularVisitor')->with(['typeOfVisitors'=>$typeOfVisitors,'companyPointsPersons'=>$companyPointsPersons,'company'=>$company,'searchResult'=>$visitorPresent, 'names'=>'The Visitor With The Id Of '. $request->idNumber. ' Has Been Registered, You Can Check Them Directly.']);
         }
 
         $visitor = new Visitor();
@@ -33,6 +35,7 @@ class Visitors extends Controller
         $visitor->secondName =  $request->secondName;
         $visitor->idNo =        $request->idNumber;        
         $visitor->address =     $request->address;
+        
 
         // dd($request->visitorImage);
         if (($request->hasFile('visitorImage'))) {
@@ -43,12 +46,12 @@ class Visitors extends Controller
             $request->file('visitorImage')->storeAs('public/VisitorImages', $storageName);
             $visitor->photoUrl =  'storage/VisitorImages/' . $storageName;
         }              
-        $visitor->save();
-
+        $visitor->save();        
         $loggingVisitor = new AccessLog();
         $loggingVisitor->visitorId = $visitor->id;
         $loggingVisitor->companyId= $request->company;
         $loggingVisitor->typeOfVisitorId= $request->typeOfVisitor;
+        $loggingVisitor->employeeAttachedToId = $request->pointsperson;
         $loggingVisitor->timeIn= now();
         $loggingVisitor->approvedById = Auth::user()->id;
 
@@ -99,6 +102,8 @@ class Visitors extends Controller
     // !this function is used to search for the regular visitors.
     public function searchForVisitors(Request $request){
         $company = Company::all();   
+        $typeOfVisitors = VisitorType::all();
+        $companyPointsPersons = CompanyEmployee::all();        
         $searchCreteria = $request->searchCreteria;
         // dd($searchCreteria);
         switch ($searchCreteria) {
@@ -133,7 +138,7 @@ class Visitors extends Controller
                 # code...
                 break;
         }        
-        return back()->with(['searchResult'=>$visitorSearchResult,'names'=>$nameValue,'company'=>$company]);
+        return back()->with(['typeOfVisitors'=>$typeOfVisitors,'companyPointsPersons'=>$companyPointsPersons,'searchResult'=>$visitorSearchResult,'names'=>$nameValue,'company'=>$company]);
     }
 
     public function checkInVisitor(Request $request){
@@ -148,14 +153,10 @@ class Visitors extends Controller
             $loggingVisitor->companyId = $request->company;
             $loggingVisitor->typeOfVisitorId = $request->typeOfVisitor;
             $loggingVisitor->timeIn = now();
-            $loggingVisitor->approvedById = Auth::user()->id;
-    
+            $loggingVisitor->approvedById = Auth::user()->id;   
+            $loggingVisitor->employeeAttachedToId = $request->companyPointsPerson; 
             $loggingVisitor->save();
-
-            // foreach ($checkingToSeeIfTheVisitorIsLoggedIn as $visitor) {
-            //     # code...
-            //     $nameOfLoggedVisitor = $visitor->accessLogBelongsToAtypeOfVisitor()->id;
-            // }
+           
             $nameOfLoggedVisitor = $loggingVisitor->accessLogBelongsToVisitor->firstName . '  '. $loggingVisitor->accessLogBelongsToVisitor->secondName;            
             Alert::success($nameOfLoggedVisitor.'   Visitor Has Successfully been Checked In.', '');
             return redirect('/home');

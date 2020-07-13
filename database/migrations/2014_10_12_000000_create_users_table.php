@@ -21,7 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('secondName',250);            
             $table->string('email',250)->unique();
             $table->bigInteger('IdNo')->unique();
-            $table->ipAddress('logIn_ip');            
+            $table->ipAddress('logIn_ip'); 
+            $table->integer('passwordChanged')->default(0);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

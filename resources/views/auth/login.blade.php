@@ -26,11 +26,11 @@
       {{-- <a href="../../index2.html"><b>Admin</b>LTE</a> --}}
       
       <img src="{{asset('images/index.png')}}" class="user-image img-circle img-reponsive" width="100px" height="100px" alt="User Image">
-      <h3 style="font-family:'Times New Roman', Times, serif;">Comviva User Access Management.</h3>
+      <h3 style="font-family:'Times New Roman', Times, serif;">Comviva Visitor Access Management.</h3>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
-      <p class="login-box-msg">Sign in to start your session</p>
+      <p class="login-box-msg">Log in to start your session</p>
       {{-- <P style="margin-top:0%;color:red;text-align:center;"> <b>Use Active Directory Credentials.</b></p> --}}
       <form action= "login" method="post">
             @csrf

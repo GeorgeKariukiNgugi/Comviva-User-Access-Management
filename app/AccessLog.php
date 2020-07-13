@@ -26,5 +26,9 @@ class AccessLog extends Model
     public function accessLogHasOneApprover()
     {
         return $this->hasOne('App\User', 'id', 'approvedById');
-    }    
+    }  
+    public function visitorBelongsToCompanyAttache()
+    {
+        return $this->belongsTo('App\CompanyEmployee', 'employeeAttachedToId', 'id');
+    }  
 }

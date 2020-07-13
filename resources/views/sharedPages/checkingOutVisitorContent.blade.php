@@ -20,6 +20,7 @@
               <th>Time In</th>
               <th>Company Visited</th>
               <th>Type Of Visit</th>
+              <th>Company Attachee.</th>
               <th>Image</th>
               <th>Check Out Visitor</th>
             </tr>
@@ -52,6 +53,9 @@
                     </td>
                     <td>
                         {{ $visitor->accessLogBelongsToAtypeOfVisitor->type}}
+                    </td>
+                    <td>
+                      {{$visitor->visitorBelongsToCompanyAttache->employeeName}}
                     </td>
                     <td class="text-center">
                         <button class="btn btn-info fa fa-file-image-o" href="#" data-toggle="modal" data-target="{{"#imageModal".$visitor->accessLogBelongsToVisitor->id}}"> Image </button>
@@ -131,6 +135,7 @@
                     <th>Time In</th>
                     <th>Company Visited</th>
                     <th>Type Of Visit</th>
+                    <th>Company Attachee.</th>
                     <th>Image</th>
                     <th>Check Out Visitor</th>
                   </tr>

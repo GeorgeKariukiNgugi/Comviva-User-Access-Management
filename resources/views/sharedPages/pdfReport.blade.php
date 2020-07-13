@@ -19,7 +19,7 @@
 
 <body>
 
-    <div class="container">
+    <div style="margin:0%;">
         <div class="text-center">
             <img src="images/index.png" class="user-image img-circle img-reponsive" width="100px" height="100px" alt="User Image">
             <h4 style="font-family: 'Times New Roman', Times, serif"> Comviva User Access Management Report. </h4>
@@ -41,6 +41,7 @@
                 <th>Time Out</th>
                 <th>Type Of Visitor</th>
                 <th>Comapny</th>
+                <th>Company Attache</th>
             </tr>
         </thead>
         <tbody>  
@@ -80,6 +81,9 @@
                 <td>
                     {{$record->accessLogBelongsToCompany->name}}
                 </td>
+                <td>
+                    {{$record->visitorBelongsToCompanyAttache->employeeName}}
+                </td>
                                    
             </tr>       
             @endforeach         
@@ -94,6 +98,7 @@
                 <th>Time Out</th>
                 <th>Type Of Visitor</th>
                 <th>Comapny</th>
+                <th>Company Attache</th>
             </tr>
         </tfoot>
     </table>

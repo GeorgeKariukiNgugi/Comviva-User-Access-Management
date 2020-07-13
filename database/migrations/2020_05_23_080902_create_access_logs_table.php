@@ -32,12 +32,22 @@ class CreateAccessLogsTable extends Migration
             // ! Added the relationship between the log table and the typeOfVisitors table.
             $table->foreign('typeOfVisitorId')->references('id')->on('visitor_types');
 
+            $table->bigInteger('employeeAttachedToId')->unsigned();
+
+            // ! Adding the relationship between the employee and the companyID. 
+            $table->foreign('employeeAttachedToId')->references('id')->on('company_employees');
+
             $table->dateTime('timeIn');
             $table->dateTime('TimeOut')->nullable();
             $table->bigInteger('approvedById')->unsigned();
 
             // ! Added the relationship between the log table and the users table.
             $table->foreign('approvedById')->references('id')->on('users');
+
+            $table->bigInteger('checkedOutById')->unsigned();
+
+            // ! Added the relationship between the log table and the users table.
+            $table->foreign('checkedOutById')->references('id')->on('users');
 
             $table->timestamps();
         });
