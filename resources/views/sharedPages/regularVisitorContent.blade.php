@@ -181,7 +181,7 @@
                                   <div class="row">
                                     <div class="col-md-6 col-md-offset-3">
                                       <div class="form-group" data-select2-id="{{"13".$item->id."visitor"}}">
-                                        <label>Type Of Visitor: </label>                                                                                                                                          
+                                        <label>Reason For Visit</label>                                                                                                                                          
                                         <select required name="typeOfVisitor" class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="5" tabindex="-1" aria-hidden="true">
                                             @foreach ($typeOfVisitors as $typeOfVisitor)
                                             <option data-select2-id="{{$typeOfVisitor->id+5674585}}" value="{{$typeOfVisitor->id}}">{{$typeOfVisitor->type}}</option>

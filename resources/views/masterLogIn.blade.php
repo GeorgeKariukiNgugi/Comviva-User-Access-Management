@@ -11,12 +11,7 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="{{asset('interface\bower_components\Ionicons\css\ionicons.min.css')}}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{asset('interface\dist\css\AdminLTE.min.css')}}">
-
-    <link rel="stylesheet" href="{{asset('interface\dist\css\skins\skin-green.min.css')}}">
-  
-
-  
+    <link rel="stylesheet" href="{{asset('interface\dist\css\css.min.css')}}">      
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   </head>
@@ -30,8 +25,7 @@
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
-      <p class="login-box-msg">Sign in to start your session</p>
-      {{-- <P style="margin-top:0%;color:red;text-align:center;"> <b>Use Active Directory Credentials.</b></p> --}}
+      <p class="login-box-msg">Sign in to start your session</p>      
       <form action= "login" method="post">
             @csrf
         <div class="form-group has-feedback">

@@ -57,8 +57,7 @@ class HomeController extends Controller
 
         $company = Company::all();
         $companyPointsPersons = CompanyEmployee::all();
-        $typeOfVisitors = VisitorType::all();           
-
+        $typeOfVisitors = VisitorType::all();                   
         $numberOfRoles = count($roles);
 
         if ($numberOfRoles == 1) {

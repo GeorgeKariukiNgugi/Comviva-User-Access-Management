@@ -133,7 +133,7 @@
               <form action="/registerVisitor" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4 col-md-offset-1">
                         <div class="form-group">
                             <label>Fisrt Name</label>
                             <div class="input-group">
@@ -142,7 +142,7 @@
                           </div>
                           </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4 col-md-offset-1">
                         <div class="form-group">
                             <label>Second Name</label>
                             <div class="input-group">
@@ -153,7 +153,7 @@
                     </div>                        
                 </div>
                 <div class="row">
-                  <div class="col-md-6 col-md-offset-3">
+                  <div class="col-md-4 col-md-offset-1 ">
                     <div class="form-group">
                         <label>ID Number</label>
                         <div class="input-group">
@@ -161,10 +161,19 @@
                         <input required type="number" name="idNumber" class="form-control" placeholder="Id Number">
                       </div>
                       </div>
-                </div>   
+                </div>
+                <div class="col-md-4 col-md-offset-1 ">
+                  <div class="form-group">
+                      <label>Phone Number</label>
+                      <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                      <input required type="number" name="phoneNumber" class="form-control" placeholder="Phones Number">
+                    </div>
+                    </div>
+              </div>   
                 </div>
                 <div class="row">
-                  <div class="col-md-6 col-md-offset-3">
+                  <div class="col-md-4 col-md-offset-1">
                     <div class="form-group">
                         <label>Address:</label>
                         <div class="input-group">
@@ -172,12 +181,22 @@
                         <input required type="text" name="address" class="form-control" placeholder="Addres">
                       </div>
                       </div>
-                </div>   
+                </div> 
+                <div class="col-md-4 col-md-offset-1">
+                  <div class="form-group">
+                    <label for="exampleInputFile">Image Of Visitor.</label>
+                    {{-- <input type="file" required name="visitorImage"  id="exampleInputFile"> --}}
+                    <input id="exampleInputFile"  name="visitorImage" type="file">
+  
+                    <p class="help-block">Click To Select File.</p>
+                  </div>
+                </div>  
                 </div>
+                {{-- <hr style="color: gray"> --}}
                 <div class="row">
                   <div class="col-md-6 col-md-offset-3">
                     <div class="form-group" data-select2-id="13">
-                      <label>Type Of Visitor: </label>
+                      <label>Reason For Visit: </label>
                       <select required name="typeOfVisitor" class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">                       
                         @foreach ($typeOfVisitors as $typeOfVisitor)
                         <option data-select2-id="{{$typeOfVisitor->id+5685}}" value="{{$typeOfVisitor->id}}">{{$typeOfVisitor->type}}</option>
@@ -189,7 +208,7 @@
                 <div class="row">
                   <div class="col-md-6 col-md-offset-3">
                     <div class="form-group" data-select2-id="13">
-                      <label>Company Visitor: </label>
+                      <label>Company To Visit: </label>
                       <select required name="company" class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="2" tabindex="-1" aria-hidden="true">                               
                           @foreach ($company as $company)
                           <option data-select2-id="{{$company->id+30}}" value="{{$company->id}}">{{$company->name}}</option>
@@ -199,21 +218,9 @@
                     </div> 
                 </div>               
                 <div class="row">
-                  <div class="col-md-6 col-md-offset-3">
-                    <div class="form-group">
-                      <label for="exampleInputFile">Image Of Visitor.</label>
-                      {{-- <input type="file" required name="visitorImage"  id="exampleInputFile"> --}}
-                      <input id="exampleInputFile"  name="visitorImage" type="file">
-    
-                      <p class="help-block">Click To Select File.</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row">
                     <div class="col-md-6 col-md-offset-3">
                       <div class="form-group">
-                        <label for="exampleInputFile">Company Point Person Attatched To: </label>
+                        <label for="exampleInputFile">Approving Manager: </label>
                         {{-- <input type="file" required name="visitorImage"  id="exampleInputFile"> --}}
                         <select required name="pointsperson" class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="5" tabindex="-1" aria-hidden="true">                               
                             @foreach ($companyPointsPersons as $persons)
@@ -242,12 +249,12 @@
                         <div class="inner">
                         <h2><i class="fa fa-user-plus"></i></h2>
                     
-                        <p> Regular Visitor.</p>
+                        <p> Returning Visitor.</p>
                         </div>
                         <div class="icon">
                         <i class="fa fa-user-plus"></i>
                         </div>
-                        <a href = "/regularVisitor" style="color: white;" class="small-box-footer">Regular Visitor <i class="fa fa-arrow-circle-o-right"></i></a>
+                        <a href = "/regularVisitor" style="color: white;" class="small-box-footer">Returning Visitor <i class="fa fa-arrow-circle-o-right"></i></a>
                     </div>
                     </div>
             </div>                     

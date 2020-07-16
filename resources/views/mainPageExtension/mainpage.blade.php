@@ -16,7 +16,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Ionicons -->
   <link rel="stylesheet" href="{{asset('interface\bower_components\Ionicons\css\ionicons.min.css')}}">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{asset('interface\dist\css\AdminLTE.min.css')}}">
+  <link rel="stylesheet" href="{{asset('interface\dist\css\css.min.css')}}">
   
   <link rel="stylesheet" href="{{asset('interface\bower_components\datatables.net-bs\css\dataTables.bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{asset('interface\dist\css\skins\skin-blue.min.css')}}"> 
@@ -29,6 +29,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+        <style>
+          input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+        </style>
         
 </head>
 
@@ -94,14 +107,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- Bootstrap 3.3.7 -->
 <script src="{{asset('interface\bower_components\bootstrap\dist\js\bootstrap.min.js')}}"></script>
 <!-- AdminLTE App -->
-<script src="{{asset('interface\dist\js\adminlte.min.js')}}"></script>
+<script src="{{asset('interface\dist\js\js.min.js')}}"></script>
 <script src="{{asset('interface\bower_components\select2\dist\js\select2.full.min.js')}}"></script>
 <script src="{{asset('js\searchCreteria.js')}}"></script>
 <script src="{{asset('js\closingModal.js')}}"></script>
 <script src="{{asset('js\checkingOutUserModal.js')}}"></script>
 <script src="{{asset('interface\bower_components\datatables.net\js\jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('interface\bower_components\datatables.net-bs\js\dataTables.bootstrap.min.js')}}"></script>
-<script src="{{asset('interface\dist\js\adminlte.min.js')}}"></script>
+<script src="{{asset('interface\dist\js\js.min.js')}}"></script>
 <script src="{{asset('interface\bower_components\bootstrap-datepicker\dist\js\bootstrap-datepicker.min.js')}}"></script>
 <script src="{{asset('interface\bower_components\moment\min\moment.min.js')}}"></script>
 <script src="{{asset('interface\bower_components\bootstrap-daterangepicker\daterangepicker.js')}}"></script>
