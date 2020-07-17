@@ -246,39 +246,76 @@ class Visitors extends Controller
 
         // ! getting visitor types. 
 
+
+
         $visitorTypes = VisitorType::all();
+ //! forLoop to give colors. 
 
-        $borderColors = [
-            "rgba(255, 99, 132, 1.0)",
-            "rgba(22,160,133, 1.0)",
-            "rgba(255, 205, 86, 1.0)",
-            "rgba(51,105,232, 1.0)",
-            "rgba(244,67,54, 1.0)",
-            "rgba(34,198,246, 1.0)",
-            "rgba(153, 102, 255, 1.0)",
-            "rgba(255, 159, 64, 1.0)",
-            "rgba(233,30,99, 1.0)",
-            "rgba(205,220,57, 1.0)"
-        ];
-        $fillColors = [
-            "rgba(255, 99, 132, 0.2)",
-            "rgba(22,160,133, 0.2)",
-            "rgba(255, 205, 86, 0.2)",
-            "rgba(51,105,232, 0.2)",
-            "rgba(244,67,54, 0.2)",
-            "rgba(34,198,246, 0.2)",
-            "rgba(153, 102, 255, 0.2)",
-            "rgba(255, 159, 64, 0.2)",
-            "rgba(233,30,99, 0.2)",
-            "rgba(205,220,57, 0.2)"
+//  // dd($fillColorsz.'  '.$borderColorsz);
+        // $borderColors = [
+        //     "rgba(255, 99, 132, 1.0)",
+        //     "rgba(22,160,133, 1.0)",
+        //     "rgba(255, 205, 86, 1.0)",
+        //     "rgba(51,105,232, 1.0)",
+        //     "rgba(244,67,54, 1.0)",
+        //     "rgba(34,198,246, 1.0)",
+        //     "rgba(153, 102, 255, 1.0)",
+        //     "rgba(255, 159, 64, 1.0)",
+        //     "rgba(233,30,99, 1.0)",
+        //     "rgba(205,220,57, 1.0)"
+        // ];
+        // $fillColors = [
+        //     "rgba(255, 99, 132, 0.2)",
+        //     "rgba(22,160,133, 0.2)",
+        //     "rgba(255, 205, 86, 0.2)",
+        //     "rgba(51,105,232, 0.2)",
+        //     "rgba(244,67,54, 0.2)",
+        //     "rgba(34,198,246, 0.2)",
+        //     "rgba(153, 102, 255, 0.2)",
+        //     "rgba(255, 159, 64, 0.2)",
+        //     "rgba(233,30,99, 0.2)",
+        //     "rgba(205,220,57, 0.2)"
 
-        ];
+        // ];
 
         // dd(gettype($month));
         // $month +=0;
         $month = Carbon::now()->month;
         $number = $month;
         // dd($month);
+
+        // ! getting the looping number. 
+
+        $loopingNumber = 0;
+        if (count(Company::all()) > 12) {
+            # code...
+            $loopingNumber = count(Company::all());
+        } else {
+            # code...
+            $loopingNumber = 12;
+        }
+        
+        $borderColors = array();
+        $fillColors = array();
+        for ($j=0; $j < $loopingNumber; $j++) { 
+            # code...
+
+            $borderColor = "rgba(";                    
+            for ($i=0; $i < 3 ; $i++) { 
+                # code...  
+                $random = rand(0,255);
+            // dd($random);
+                $borderColor.= $random;                        
+                if ($i!=2) {
+                    # code...
+                    $borderColor.="," ;
+                }
+            }
+            $fillColor = $borderColor.", 0.2)";
+            $borderColor.=")";
+            array_push($borderColors,$borderColor);
+            array_push($fillColors,$fillColor);
+        }
         for ($i=1; $i <= $number; $i++) { 
             # code...
             # code...            
@@ -364,14 +401,17 @@ class Visitors extends Controller
                             break;
                     }  
                     
+                   
+                    
+
                     
                     $groupedCompanyBarChart->dataset($month,'bar',$companiesCount)
                                             ->color($borderColors[$i])
                                             ->backgroundcolor($fillColors[$i]);
 
                     $groupedTypeOfVisitorBarChart->dataset($month,'bar',$typeOfVisitorsCount)
-                                                 ->color($borderColors[$i])
-                                                 ->backgroundcolor($fillColors[$i]);
+                    ->color($borderColors[$i])
+                    ->backgroundcolor($fillColors[$i]);
 
                     $groupedCompanyBarChart->labels($companiesNames);
                     $groupedTypeOfVisitorBarChart->labels($visitorsNames);
@@ -442,8 +482,8 @@ class Visitors extends Controller
                 }              
             }
             $groupedBarChartForCompanyBasedOnMonths->dataset($company->name,'bar',$numberOfVisitorsThatVisitedTheCompanyPerMonth)
-                                                   ->color($borderColors[$company->id])
-                                                   ->backgroundcolor($fillColors[$company->id]);
+            ->color($borderColors[$i])
+            ->backgroundcolor($fillColors[$i]);
             $groupedBarChartForCompanyBasedOnMonths->labels($monthsArray);                        
         }
 
