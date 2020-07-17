@@ -35,13 +35,14 @@
         <thead>
             <tr>
                 <th>S <sub>no</sub></th>
-                <th> Visitor Name</th>
+                <th> Visitor</th>
                 <th> ID</th>
                 <th>Time In</th>
                 <th>Time Out</th>
-                <th>Type Of Visitor</th>
-                <th>Comapny</th>
-                <th>Company Attache</th>
+                <th>Visit Reason</th>
+                <th>Comapny Visiting</th>
+                <th>Approving Manager.</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody>  
@@ -62,7 +63,7 @@
                 <td>
                     @php
                         $dateToFormat = date_create($record->timeIn);
-                        $date = date_format($dateToFormat, "D-d-F-Y H:i:s");  
+                        $date = date_format($dateToFormat, "d-F-Y H:i:s");  
 
                     @endphp
                     {{$date}}
@@ -70,7 +71,7 @@
                 <td>
                     @php
                     $dateToFormat = date_create($record->TimeOut);
-                    $date = date_format($dateToFormat, "D-d-F-Y H:i:s");  
+                    $date = date_format($dateToFormat, "d-F-Y H:i:s");  
 
                 @endphp
                 {{$date}}
@@ -84,7 +85,13 @@
                 <td>
                     {{$record->visitorBelongsToCompanyAttache->employeeName}}
                 </td>
-                                   
+                   <td>
+                       @if ($record->approvingManagerApproval == 1)
+                           {{"Approved."}}
+                       @else
+                           {{"Denied."}}
+                       @endif
+                   </td>                
             </tr>       
             @endforeach         
                                           
@@ -92,13 +99,14 @@
         <tfoot>
             <tr>
                 <th>S <sub>no</sub></th>
-                <th> Visitor Name</th>
+                <th> Visitor </th>
                 <th> ID</th>
                 <th>Time In</th>
                 <th>Time Out</th>
-                <th>Type Of Visitor</th>
-                <th>Comapny</th>
-                <th>Company Attache</th>
+                <th>Visit Reason</th>
+                <th>Comapny Visiting</th>
+                <th>Approving Manager.</th>
+                <th>Status</th>
             </tr>
         </tfoot>
     </table>

@@ -80,7 +80,9 @@
                               <select name="roles" id="">
                                 
                                 @foreach ($roles as $role)
-                                <option value="{{$role->name}}">{{$role->name}}</option>                                
+                                @if ($role->name != 'approvingmanager')
+                                <option value="{{$role->name}}">{{$role->name}}</option>  
+                                @endif                                                              
                                 @endforeach
                                 
                               </select>
@@ -121,7 +123,10 @@
                 @endphp
                                
                 @foreach ($users as $user)
-
+                @php
+                $rolesUser = $user->getRoleNames();
+                @endphp
+                @if ($rolesUser[0] != 'approvingmanager')                                    
                 <tr>
                     <td>
                        {{$increment++}} 
@@ -137,9 +142,7 @@
                     </td>
                     <td>
                         {{-- {{$user->wing}} --}}
-                        @php
-                            $rolesUser = $user->getRoleNames();
-                        @endphp
+                       
                         @foreach ($rolesUser as $role)
                             @if ($role == 'admin')
                             <p style="font-size: 14px;" class="label  bg-red">{{$role}}</p>  
@@ -211,8 +214,11 @@
                                 <select name="roles" id="">
                                   
                                   @foreach ($roles as $role)
-                                  <option value="{{$role->id}}">{{$role->name}}</option>
+                                  {{-- <option value="{{$role->id}}">{{$role->name}}</option> --}}
                                   {{-- <option value="">{{$role}}</option> --}}
+                                  @if ($role->name != 'approvingmanager')
+                                  <option value="{{$role->name}}">{{$role->name}}</option>  
+                                  @endif  
                                   @endforeach
                                   
                                 </select>
@@ -281,7 +287,7 @@
                           </div>
                     </td>
                 </tr>
-                    
+                @endif 
                 @endforeach
                 
             </tbody>

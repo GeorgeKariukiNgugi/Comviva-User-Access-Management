@@ -135,7 +135,7 @@
                               </div>
                               <div class="col-md-9">
                                 {{-- {{$item->address}} --}}
-                                <img src="{{asset($item->photoUrl)}}" alt="">
+                                <img width="60px" height="60px" src="{{asset($item->photoUrl)}}" alt="">
                                 
                               </div>
                             </div>

@@ -297,7 +297,7 @@ class Visitors extends Controller
         
         $borderColors = array();
         $fillColors = array();
-        for ($j=0; $j < $loopingNumber; $j++) { 
+        for ($j=0; $j < $loopingNumber+1; $j++) { 
             # code...
 
             $borderColor = "rgba(";                    
