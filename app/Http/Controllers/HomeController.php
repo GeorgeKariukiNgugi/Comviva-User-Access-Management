@@ -11,6 +11,7 @@ use App\User;
 use App\VisitorType;
 use App\Company;
 use App\CompanyEmployee;
+use App\AccessLog;
 class HomeController extends Controller
 {
     use HasRoles;
@@ -69,17 +70,37 @@ class HomeController extends Controller
             }
 
             switch ($roleForUser) {
+                // ! this is the case for the accessmanager.
                 case 'accessmanager':
                     # code...                    
                     return view('accessMangerInterfaces.landing',['name'=>$nameOfUser,'date'=>$dateToUser,                                
                                 'company'=>$company,'companyPointsPersons'=>$companyPointsPersons,'typeOfVisitors'=>$typeOfVisitors
                     ]);
                     break;
+
+                    // ! this is the case for the admin.
                     case 'admin':                        
                         return view('adminInterfaces.landing',['name'=>$nameOfUser,'date'=>$dateToUser,
                         'company'=>$company,'companyPointsPersons'=>$companyPointsPersons,'typeOfVisitors'=>$typeOfVisitors
                         ]);
                     break;
+
+                    // ! this is the case for the approvingManager.
+                    case 'approvingmanager':
+                        # code...
+                        // ! getting the Id from companyEmployee table. 
+                        $idOfEmployees = CompanyEmployee::where('usersId',Auth::user()->id)->get();
+                        $idOfEmployee = null;
+                        foreach($idOfEmployees as $employee){
+                            $idOfEmployee =   $employee->id;       
+                        }
+                        
+                        // ! getting the visitors awaiting approval.
+                        $visitorsAwaitingApproval = AccessLog::where('employeeAttachedToId',$idOfEmployee)->get();                        
+                        return view('approvingManager.landing')->with(['visitorsAwaitingApproval'=>$visitorsAwaitingApproval]);
+                        
+
+                        break;
                 default:
                 Alert::danger(Auth::users()->firstName.'   '.Auth::users()->secondName.'  It Seems you are either Not Assigned A Role Or Multiple Roles, Contact Admin For Details.', '');
                     # code...

@@ -20,7 +20,8 @@
               <th>Time In</th>
               <th>Company Visited</th>
               <th>Type Of Visit</th>
-              <th>Company Attachee.</th>
+              <th>Approving Manager</th>
+              <th>Approval</th>
               <th>Image</th>
               <th>Check Out Visitor</th>
             </tr>
@@ -57,9 +58,45 @@
                     <td>
                       {{$visitor->visitorBelongsToCompanyAttache->employeeName}}
                     </td>
-                    <td class="text-center">
-                        <button class="btn btn-info fa fa-file-image-o" href="#" data-toggle="modal" data-target="{{"#imageModal".$visitor->accessLogBelongsToVisitor->id}}"> Image </button>
+                    @if ($visitor->approvingManagerApproval == 0)
+                        <td class="text-center">
+                          <p style="color: blue;text-decration:bold;font-size:20px;"> <i class="fa fa-circle-o-notch"></i> WAITING. </p>
+                        </td>
+                        <td class="text-center">
 
+                            <button class=" btn btn-info fa fa-file-image-o" href="#" data-toggle="modal" data-target="{{"#imageModal".$visitor->accessLogBelongsToVisitor->id}}"> Image </button>
+                        </td>
+                        <td class="text-center">
+                          <button disabled class="btn btn-danger fa fa-sign-out checkOutVisitorButton"                                                                                               
+                                                                        data-toggle="modal"
+                                                                        data-target="{{"#checkingOutVisitor".$visitor->id}}"> Check Out Visitor</button>
+                      </td>
+                      @elseif($visitor->approvingManagerApproval == 1)
+                        <td class="text-center">
+                          <p style="color: green;text-decration:bold;font-size:20px;"> <i class="fa fa-check"></i> APPROVED. </p>
+                        </td>
+                        <td class="text-center">
+                            <button class="btn btn-info fa fa-file-image-o" href="#" data-toggle="modal" data-target="{{"#imageModal".$visitor->accessLogBelongsToVisitor->id}}"> Image </button>
+                        </td>
+                        <td class="text-center">
+                          <button class="btn btn-danger fa fa-sign-out checkOutVisitorButton"                                                                                               
+                                                                        data-toggle="modal"
+                                                                        data-target="{{"#checkingOutVisitor".$visitor->id}}"> Check Out Visitor</button>
+                      </td>
+                      @elseif($visitor->approvingManagerApproval == -1)
+                      <td class="text-center">
+                        <p style="color: red;text-decration:bold;font-size:20px;"> <i class="fa fa-times"></i> DENIED. </p>
+                      </td>
+                      <td class="text-center">
+                          <button class="btn btn-info fa fa-file-image-o" href="#" data-toggle="modal" data-target="{{"#imageModal".$visitor->accessLogBelongsToVisitor->id}}"> Image </button>
+                      </td>
+                      <td class="text-center">
+                        <button class="btn btn-danger fa fa-sign-out checkOutVisitorButton"                                                                                               
+                                                                      data-toggle="modal"
+                                                                      data-target="{{"#checkingOutVisitor".$visitor->id}}"> Check Out Visitor</button>
+                    </td>
+                      @endif
+                   
                         <div class="modal fade" id="{{"imageModal".$visitor->accessLogBelongsToVisitor->id}}" style="display: none;">
                             <div class="modal-dialog">
                               <div class="modal-content">
@@ -83,14 +120,7 @@
                               <!-- /.modal-content -->
                             </div>
                             <!-- /.modal-dialog -->
-                          </div>
-
-                    </td>
-                    <td class="text-center">
-                        <button class="btn btn-danger fa fa-sign-out checkOutVisitorButton"                                                                                               
-                                                                      data-toggle="modal"
-                                                                      data-target="{{"#checkingOutVisitor".$visitor->id}}"> Check Out Visitor</button>
-                    </td>
+                          </div>                                       
                     <div class="modal fade" id="{{"checkingOutVisitor".$visitor->id}}" style="display: none;">
                         <div class="modal-dialog">
                           <div class="modal-content">
@@ -135,7 +165,8 @@
                     <th>Time In</th>
                     <th>Company Visited</th>
                     <th>Type Of Visit</th>
-                    <th>Company Attachee.</th>
+                    <th>Approving Manager</th>
+                    <th>Approval</th>
                     <th>Image</th>
                     <th>Check Out Visitor</th>
                   </tr>

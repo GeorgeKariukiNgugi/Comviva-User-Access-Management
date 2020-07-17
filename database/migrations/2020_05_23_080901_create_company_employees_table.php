@@ -18,9 +18,13 @@ class CreateCompanyEmployeesTable extends Migration
             $table->bigIncrements('id');
             
             $table->bigInteger('companyId')->unsigned();
-
+            
             // ! Implementing the relationship between the employee and the Company. 
             $table->foreign('companyId')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
+
+            $table->bigInteger('usersId')->unsigned();
+
+            $table->foreign('usersId')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
 
             $table->string('employeeName');            
             $table->timestamps();

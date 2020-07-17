@@ -21,6 +21,7 @@ class CreateVisitorsTable extends Migration
             $table->bigInteger('idNo')->unique();
             $table->text('address');
             $table->text('photoUrl');
+            $table->integer('mobile');
             $table->timestamps();
         });
     }

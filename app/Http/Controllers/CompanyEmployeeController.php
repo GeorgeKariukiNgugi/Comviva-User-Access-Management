@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\CompanyEmployee;
 use App\Company;
+use App\User;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -42,11 +43,24 @@ class CompanyEmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        // ! storing thw new company points person. 
+        // ! adding the company points person as a uer first. 
+        $newUser = new User();
+        $newUser->firstName = $request->firstName;
+        $newUser->secondName = $request->secondName;
+        $newUser->email = $request->email;
+        $newUser->IdNo = $request->idNumber;
+        $newUser->logIn_ip = '192.168.202.1';
+        $newUser->password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
+        $newUser->passwordChanged  = 0;
 
+        $newUser->save();
+        $newUser->syncRoles(['approvingmanager']);
+        
+        // ! storing thw new company points person.         
         $companyPointsPerson = new CompanyEmployee();
         $companyPointsPerson->employeeName =  $request->firstName .'  '. $request->secondName;
         $companyPointsPerson->companyId = $request->company;
+        $companyPointsPerson->usersId = $newUser->id;
         $companyPointsPerson->save();
 
         Alert::success("You Have Successfully Created A New Company Points Person $companyPointsPerson->employeeName");
@@ -111,12 +125,18 @@ class CompanyEmployeeController extends Controller
     {
         //! deleting. 
         $companyEmployees = CompanyEmployee::where('id',$request->idOfUser)->get();
-
+        $userId = null;
         foreach ($companyEmployees as $companyEmployee) {
             # code...
+            $userId = $companyEmployee->usersId;
             $companyEmployee->delete();
         }
 
+        $usersToDelete = User::where('id',$userId)->get();
+        foreach ($usersToDelete as $user) {
+            # code...
+            $user->delete();
+        }
         Alert::success("You Have Successfully Deleted.");
 
         return back();

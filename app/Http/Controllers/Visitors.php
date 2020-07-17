@@ -35,6 +35,7 @@ class Visitors extends Controller
         $visitor->secondName =  $request->secondName;
         $visitor->idNo =        $request->idNumber;        
         $visitor->address =     $request->address;
+        $visitor->mobile = $request->phoneNumber;
         
 
         // dd($request->visitorImage);

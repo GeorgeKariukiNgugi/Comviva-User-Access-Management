@@ -1,13 +1,13 @@
 @section('mainContentHeader')
     <h2 class="text-center" style="  font-decoration:underline; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif" >
-        Managing The Companies Points Persons. 
+        Managing The Approving Managers. 
     </h2>
 @endsection
 @section('mainContent')
 
 <div class="box box-success">
     <div class="box-header">              
-      <h3 class="box-title">Companies Points Persons Regisered.</h3>
+      <h3 class="box-title">Approving Managers Registered.</h3>
     </div>
     <div class="box-body"> 
       <div style="margin-bottom: 1.3%;">
@@ -46,6 +46,26 @@
                  </div>
                   <br>                                   
                <br>
+               <div class="row">
+                <div class="col-md-4 col-md-offset-1">
+                  Email Address:
+                </div>
+                <div class="col-md-4 col-md-offset-1">
+                  <input required type="email" name="email" id="">
+                </div>
+             </div>
+             <br>
+             <br>
+             <div class="row">
+              <div class="col-md-4 col-md-offset-1">
+                ID Number:
+              </div>
+              <div class="col-md-4 col-md-offset-1">
+                <input required type="number" name="idNumber" id="">
+              </div>
+           </div>
+           <br>
+           <br>
                <div class="row">
                 <div class="col-md-4 col-md-offset-1">
                   Company:
@@ -93,10 +113,13 @@
             <tbody>
               @if (count($allEmployees) >0 )  
                 {{-- This is the location of the companies points persons. --}}
+                @php
+                    $counter = 1;
+                @endphp
                 @foreach ($allEmployees as $employee)
                 <tr>
                 <td>
-                  {{$employee->id}} 
+                  {{$counter++}} 
                 </td>
                     
                 <td>

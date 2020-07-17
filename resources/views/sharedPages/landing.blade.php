@@ -167,7 +167,7 @@
                       <label>Phone Number</label>
                       <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                      <input required type="number" name="phoneNumber" class="form-control" placeholder="Phones Number">
+                      <input required type="number" name="phoneNumber" minlength="10" maxlength="10" class="form-control" placeholder="Phones Number">
                     </div>
                     </div>
               </div>   

@@ -87,4 +87,10 @@ Route::post('/updateCompanyEmployee','CompanyEmployeeController@update');
 
 Route::post('/deleteCompanyPointsPerson','CompanyEmployeeController@destroy');
 
+Route::post('/approvingManagerApproval','ApprovingManager@approveVisitor');
+
+Route::post('/denyManagerApproval','ApprovingManager@disapproveRequest');
+
+Route::get('/previousRequests','ApprovingManager@previousRequests');
+
 
