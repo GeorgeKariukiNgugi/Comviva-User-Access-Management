@@ -93,4 +93,6 @@ Route::post('/denyManagerApproval','ApprovingManager@disapproveRequest');
 
 Route::get('/previousRequests','ApprovingManager@previousRequests');
 
+Route::get('/visitorsCheckedOut','Visitors@checkedOutVisitors');
+
 

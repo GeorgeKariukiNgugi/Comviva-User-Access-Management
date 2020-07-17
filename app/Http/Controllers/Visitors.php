@@ -483,4 +483,61 @@ class Visitors extends Controller
         }
         
     }
+    public function checkedOutVisitors(){
+
+        $roles = Auth::user()->getRoleNames();
+        $numberOfRoles = count($roles);
+        if ($numberOfRoles == 1) {
+            # code...
+            $roleForUser = null;
+            foreach ($roles as $role) {
+                # code...
+                $roleForUser = $role;
+            }
+
+            // ! getting the visitors checked out by date. 
+
+            //! Visitors checked out today.
+            $today = Carbon::today();
+            $todayVisitorsCheckOuts = AccessLog::whereDate('TimeOut',$today)->get();
+
+            // ! visitors checked out yesterday. 
+            $yesterday = Carbon::yesterday();
+            $yesterdayVisitorsCheckOuts = AccessLog::whereDate('TimeOut',$yesterday)->get();
+
+            // ! visitors checked out this month.
+            $month = $today->month;
+            $thisMonthVisitors = AccessLog::whereMonth('TimeOut',$month)->get();
+
+            $visitorsArray = array();
+            $visitorArrayHeader = array();
+            array_push($visitorsArray,$todayVisitorsCheckOuts);
+            array_push($visitorArrayHeader,'Visitors Checked Out Today.'.$today->format('l jS \\of F Y'));
+            array_push($visitorsArray,$yesterdayVisitorsCheckOuts);
+            array_push($visitorArrayHeader,'Visitors Checked Out Yesterday.'.$yesterday->format('l jS \\of F Y'));
+            array_push($visitorsArray,$thisMonthVisitors);
+            array_push($visitorArrayHeader,'Visitors Checked This Month.'.$yesterday->format('F Y'));
+            // dd($visitorsArray);
+            switch ($roleForUser) {
+                case 'accessmanager':
+                    # code...                                        
+                         return view('accessMangerInterfaces.visitorsCheckedOut')->with(['visitorsArray'=>$visitorsArray,'visitorArrayHeader'=>$visitorArrayHeader]);
+                    break;
+                    case 'admin':                                                
+                        return view('adminInterfaces.visitorsCheckedOut')->with(['visitorsArray'=>$visitorsArray,'visitorArrayHeader'=>$visitorArrayHeader]);
+                    break;
+                default:                
+                        return view('accessMangerInterfaces.visitorsCheckedOut')->with(['visitorsArray'=>$visitorsArray,'visitorArrayHeader'=>$visitorArrayHeader]);
+                    # code...
+                    break;
+            }
+
+
+        } else {
+            # code...
+            return back();
+            Alert::danger(Auth::users()->firstName.'   '.Auth::users()->secondName.'  It Seems you are either Not Assigned A Role Or Multiple Roles, Contact Admin For Details.', '');
+        }
+
+    }
 }

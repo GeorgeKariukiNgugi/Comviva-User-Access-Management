@@ -26,6 +26,10 @@ class AccessLog extends Model
     public function accessLogHasOneApprover()
     {
         return $this->hasOne('App\User', 'id', 'approvedById');
+    }
+    public function accessLogHasOneCheckOutApprover()
+    {
+        return $this->hasOne('App\User', 'id', 'checkedOutById');
     }  
     public function visitorBelongsToCompanyAttache()
     {

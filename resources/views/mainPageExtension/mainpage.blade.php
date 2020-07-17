@@ -127,7 +127,9 @@ $(function () {
     $('#reservation').daterangepicker()
     $('.select2').select2()
     })   
-    $('#example1').DataTable()
+    $('.example1').DataTable();
+    $('#example2').DataTable();
+    $('#example3').DataTable();
     $('#example2').DataTable({
       'paging'      : true,
       'lengthChange': false,
