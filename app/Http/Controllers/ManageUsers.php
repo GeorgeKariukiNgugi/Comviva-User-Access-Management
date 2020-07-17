@@ -114,4 +114,43 @@ class ManageUsers extends Controller
 
     }
 
+    public function getChangePassword(){
+        return view('auth.changePassword');
+    }
+
+    public function postChangePassword(Request $request){
+
+        $password = $request->password;
+        $reTypedPassword = $request->retypePassword;
+        $oldPassword = $request->oldpassword;
+
+        if(Hash::make($request->oldPassword) != Auth::user()->password){
+            return back()->with('error','The Old Password Is Not Similar To The Previous Password');
+        }
+        elseif($password != $reTypedPassword){
+
+            return back()->with('error','The Password And The Retyped Password Are Not The Same.');
+            
+        }
+        else{
+
+            // return "password do match.";
+            // ! saving the password that is new. 
+
+            $idOfUser = Auth::user()->id; 
+            $users = User::where('id',$idOfUser)->get();
+
+            foreach ($users as $user) {
+                # code...
+                $user->password = Hash::make($request->password);
+                $user->passwordChanged = 1;
+                $user->save();
+            }
+
+
+            return redirect('/');
+
+        }
+    }
+
 }

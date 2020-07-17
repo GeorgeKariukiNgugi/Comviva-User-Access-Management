@@ -95,4 +95,6 @@ Route::get('/previousRequests','ApprovingManager@previousRequests');
 
 Route::get('/visitorsCheckedOut','Visitors@checkedOutVisitors');
 
+Route::get('/changePassword','ManageUsers@getChangePassword');
+
 

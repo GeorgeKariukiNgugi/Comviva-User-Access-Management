@@ -42,6 +42,9 @@
                    {{ csrf_field() }}
                </form>
                 </div>
+                <div class="pull-left">
+                  <a class="btn btn-default btn-flat" href="/changePassword"> Change Password</a>                 
+                </div>
               </li>
             </ul>
           </li>           
