@@ -19,7 +19,7 @@
       <li class="header">System Management.</li>    
       <li class=""><a href="/manageUsers"><i class="fa fa-users"></i> <span> Manage Users.</span></a></li>            
       <li class=""><a href="/manageCompanies"><i class="fa fa-building"></i> <span> Manage Companies.</span></a></li>      
-      <li class=""><a href="/manageCompanyPointsPersons"><i class="fa fa-building"></i> <span> Manage Access Manager.</span></a></li>
+      <li class=""><a href="/manageCompanyPointsPersons"><i class="fa fa-building"></i> <span> Manage Approving Manager.</span></a></li>
     </ul>
     <!-- /.sidebar-menu -->
   </section>
