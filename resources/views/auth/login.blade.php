@@ -26,7 +26,7 @@
       {{-- <a href="../../index2.html"><b>Admin</b>LTE</a> --}}
       
       <img src="{{asset('images/index.png')}}" class="user-image img-circle img-reponsive" width="100px" height="100px" alt="User Image">
-      <h3 style="font-family:'Times New Roman', Times, serif;">Office Place Visitor Acces Management</h3>
+      <h3 style="font-family:'Times New Roman', Times, serif;">Office Park Visitor Access Management</h3>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">

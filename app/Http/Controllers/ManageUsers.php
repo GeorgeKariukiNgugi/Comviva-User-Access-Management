@@ -124,7 +124,7 @@ class ManageUsers extends Controller
         $reTypedPassword = $request->retypePassword;
         $oldPassword = $request->oldpassword;
 
-        if(Hash::make($request->oldPassword) != Auth::user()->password){
+        if(Hash::make($request->oldpassword) != Auth::user()->password){
             return back()->with('error','The Old Password Is Not Similar To The Previous Password');
         }
         elseif($password != $reTypedPassword){

@@ -22,7 +22,7 @@
       {{-- <a href="../../index2.html"><b>Admin</b>LTE</a> --}}
       
       <img src="{{asset('images/index.png')}}" class="user-image img-circle img-reponsive" width="100px" height="100px" alt="User Image">
-      <h3 style="font-family:'Times New Roman', Times, serif;">Office Place Visitor Acces Management</h3>
+      <h3 style="font-family:'Times New Roman', Times, serif;">Office Park Visitor Access Management</h3>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
@@ -35,7 +35,7 @@
             @csrf
             <div class="form-group has-feedback">
                 
-                <input id="email" type="oldpassword" placeholder="Old Password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" required autocomplete="email" autofocus>
+                <input id="email" type="password" name="oldpasswod" placeholder="Old Password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" required autocomplete="email" autofocus>
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>                        
 </div>
         <div class="form-group has-feedback">
