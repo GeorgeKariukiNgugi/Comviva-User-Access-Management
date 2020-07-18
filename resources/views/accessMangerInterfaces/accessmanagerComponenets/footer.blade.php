@@ -2,5 +2,5 @@
     <!-- To the right -->
     
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2020 Comviva Visitor Acces Management.  All rights reserved.
+    <strong>Copyright &copy; 2020 User Access Management System.  All rights reserved.
   </footer>

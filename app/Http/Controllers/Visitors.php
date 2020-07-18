@@ -251,38 +251,8 @@ class Visitors extends Controller
         $visitorTypes = VisitorType::all();
  //! forLoop to give colors. 
 
-//  // dd($fillColorsz.'  '.$borderColorsz);
-        // $borderColors = [
-        //     "rgba(255, 99, 132, 1.0)",
-        //     "rgba(22,160,133, 1.0)",
-        //     "rgba(255, 205, 86, 1.0)",
-        //     "rgba(51,105,232, 1.0)",
-        //     "rgba(244,67,54, 1.0)",
-        //     "rgba(34,198,246, 1.0)",
-        //     "rgba(153, 102, 255, 1.0)",
-        //     "rgba(255, 159, 64, 1.0)",
-        //     "rgba(233,30,99, 1.0)",
-        //     "rgba(205,220,57, 1.0)"
-        // ];
-        // $fillColors = [
-        //     "rgba(255, 99, 132, 0.2)",
-        //     "rgba(22,160,133, 0.2)",
-        //     "rgba(255, 205, 86, 0.2)",
-        //     "rgba(51,105,232, 0.2)",
-        //     "rgba(244,67,54, 0.2)",
-        //     "rgba(34,198,246, 0.2)",
-        //     "rgba(153, 102, 255, 0.2)",
-        //     "rgba(255, 159, 64, 0.2)",
-        //     "rgba(233,30,99, 0.2)",
-        //     "rgba(205,220,57, 0.2)"
-
-        // ];
-
-        // dd(gettype($month));
-        // $month +=0;
         $month = Carbon::now()->month;
-        $number = $month;
-        // dd($month);
+        $number = $month;        
 
         // ! getting the looping number. 
 
@@ -539,24 +509,24 @@ class Visitors extends Controller
 
             //! Visitors checked out today.
             $today = Carbon::today();
-            $todayVisitorsCheckOuts = AccessLog::whereDate('TimeOut',$today)->get();
+            $todayVisitorsCheckOuts = AccessLog::whereDate('timeIn',$today)->get();
 
             // ! visitors checked out yesterday. 
             $yesterday = Carbon::yesterday();
-            $yesterdayVisitorsCheckOuts = AccessLog::whereDate('TimeOut',$yesterday)->get();
+            $yesterdayVisitorsCheckOuts = AccessLog::whereDate('timeIn',$yesterday)->get();
 
             // ! visitors checked out this month.
             $month = $today->month;
-            $thisMonthVisitors = AccessLog::whereMonth('TimeOut',$month)->get();
+            $thisMonthVisitors = AccessLog::whereMonth('timeIn',$month)->get();
 
             $visitorsArray = array();
             $visitorArrayHeader = array();
             array_push($visitorsArray,$todayVisitorsCheckOuts);
-            array_push($visitorArrayHeader,'Visitors Checked Out Today.'.$today->format('l jS \\of F Y'));
+            array_push($visitorArrayHeader,'Visitors Today ('.$today->format('l jS \\of F Y').")");
             array_push($visitorsArray,$yesterdayVisitorsCheckOuts);
-            array_push($visitorArrayHeader,'Visitors Checked Out Yesterday.'.$yesterday->format('l jS \\of F Y'));
+            array_push($visitorArrayHeader,'Visitors Yesterday. ('.$yesterday->format('l jS \\of F Y').")");
             array_push($visitorsArray,$thisMonthVisitors);
-            array_push($visitorArrayHeader,'Visitors Checked This Month.'.$yesterday->format('F Y'));
+            array_push($visitorArrayHeader,'Visitors This Month. ('.$yesterday->format('F Y').")");
             // dd($visitorsArray);
             switch ($roleForUser) {
                 case 'accessmanager':

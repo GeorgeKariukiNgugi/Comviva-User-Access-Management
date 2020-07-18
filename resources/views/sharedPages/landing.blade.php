@@ -164,10 +164,10 @@
                 </div>
                 <div class="col-md-4 col-md-offset-1 ">
                   <div class="form-group">
-                      <label>Phone Number</label>
+                      <label>Phone Number</label> <span>(Max Length 10 digits.)</span>
                       <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                      <input required type="number" name="phoneNumber" minlength="10" maxlength="10" class="form-control" placeholder="Phones Number">
+                      <input required type="text" pattern="\d*" name="phoneNumber" maxlength="10" minlength="10" class="form-control" placeholder="Phones Number">
                     </div>
                     </div>
               </div>   
@@ -193,19 +193,50 @@
                 </div>  
                 </div>
                 {{-- <hr style="color: gray"> --}}
+
+                <hr>
+
                 <div class="row">
-                  <div class="col-md-6 col-md-offset-3">
-                    <div class="form-group" data-select2-id="13">
-                      <label>Reason For Visit: </label>
-                      <select required name="typeOfVisitor" class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">                       
-                        @foreach ($typeOfVisitors as $typeOfVisitor)
-                        <option data-select2-id="{{$typeOfVisitor->id+5685}}" value="{{$typeOfVisitor->id}}">{{$typeOfVisitor->type}}</option>
-                        @endforeach
-                      </select>                        
+                  <div class="col-md-10  col-md-offset-1">
+                    <div class="row">
+                      <div class="col-md-4 ">
+                        <div class="form-group" data-select2-id="13">
+                          <label>Reason For Visit: </label>
+                          <select required name="typeOfVisitor" class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">                       
+                            @foreach ($typeOfVisitors as $typeOfVisitor)
+                            <option data-select2-id="{{$typeOfVisitor->id+5685}}" value="{{$typeOfVisitor->id}}">{{$typeOfVisitor->type}}</option>
+                            @endforeach
+                          </select>                        
+                        </div>
+                        </div>  
+                        <div class="col-md-4">
+                          <div class="form-group" data-select2-id="13">
+                            <label>Company To Visit: </label>
+                            <select required name="company" class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="2" tabindex="-1" aria-hidden="true">                               
+                                @foreach ($company as $company)
+                                <option data-select2-id="{{$company->id+30}}" value="{{$company->id}}">{{$company->name}}</option>
+                                @endforeach
+                            </select>                        
+                          </div>
+                          </div> 
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="exampleInputFile">Approving Manager: </label>
+                              {{-- <input type="file" required name="visitorImage"  id="exampleInputFile"> --}}
+                              <select required name="pointsperson" class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="5" tabindex="-1" aria-hidden="true">                               
+                                  @foreach ($companyPointsPersons as $persons)
+                                  <option data-select2-id="{{$persons->id+452541}}" value="{{$persons->id}}">{{$persons->employeeName}} ::: {{$persons->companyEmployeeBelongsToCompany->name}} </option>
+                                  @endforeach
+                                  
+                              </select> 
+                            </div>
+                          </div> 
                     </div>
-                    </div>                                        
+                  </div>
+                  
+                                     
                 </div>
-                <div class="row">
+                {{-- <div class="row">
                   <div class="col-md-6 col-md-offset-3">
                     <div class="form-group" data-select2-id="13">
                       <label>Company To Visit: </label>
@@ -216,13 +247,13 @@
                       </select>                        
                     </div>
                     </div> 
-                </div>               
-                <div class="row">
+                </div>                --}}
+                {{-- <div class="row">
                     <div class="col-md-6 col-md-offset-3">
                       <div class="form-group">
                         <label for="exampleInputFile">Approving Manager: </label>
                         {{-- <input type="file" required name="visitorImage"  id="exampleInputFile"> --}}
-                        <select required name="pointsperson" class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="5" tabindex="-1" aria-hidden="true">                               
+                        {{-- <select required name="pointsperson" class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="5" tabindex="-1" aria-hidden="true">                               
                             @foreach ($companyPointsPersons as $persons)
                             <option data-select2-id="{{$persons->id+452541}}" value="{{$persons->id}}">{{$persons->employeeName}} ::: {{$persons->companyEmployeeBelongsToCompany->name}} </option>
                             @endforeach
@@ -230,7 +261,7 @@
                         </select> 
                       </div>
                     </div>
-                  </div>
+                  </div>  --}}
             </div>
             <!-- /.box-body -->
             <div class="box-footer">

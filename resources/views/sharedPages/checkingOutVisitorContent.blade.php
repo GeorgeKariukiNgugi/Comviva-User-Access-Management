@@ -60,7 +60,7 @@
                     </td>
                     @if ($visitor->approvingManagerApproval == 0)
                         <td class="text-center">
-                          <p style="color: blue;text-decration:bold;font-size:20px;"> <i class="fa fa-circle-o-notch"></i> WAITING. </p>
+                          <p style="color: blue;text-decration:bold;font-size:16px;"> <i class="fa fa-circle-o-notch"></i> WAITING. </p>
                         </td>
                         <td class="text-center">
 
@@ -73,7 +73,7 @@
                       </td>
                       @elseif($visitor->approvingManagerApproval == 1)
                         <td class="text-center">
-                          <p style="color: green;text-decration:bold;font-size:20px;"> <i class="fa fa-check"></i> APPROVED. </p>
+                          <p style="color: green;text-decration:bold;font-size:16px;"> <i class="fa fa-check"></i> APPROVED. </p>
                         </td>
                         <td class="text-center">
                             <button class="btn btn-info fa fa-file-image-o" href="#" data-toggle="modal" data-target="{{"#imageModal".$visitor->accessLogBelongsToVisitor->id}}"> Image </button>
@@ -85,7 +85,7 @@
                       </td>
                       @elseif($visitor->approvingManagerApproval == -1)
                       <td class="text-center">
-                        <p style="color: red;text-decration:bold;font-size:20px;"> <i class="fa fa-times"></i> DENIED. </p>
+                        <p style="color: red;text-decration:bold;font-size:16px;"> <i class="fa fa-times"></i> DENIED. </p>
                       </td>
                       <td class="text-center">
                           <button class="btn btn-info fa fa-file-image-o" href="#" data-toggle="modal" data-target="{{"#imageModal".$visitor->accessLogBelongsToVisitor->id}}"> Image </button>

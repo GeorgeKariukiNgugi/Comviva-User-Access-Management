@@ -1,7 +1,7 @@
 @extends('accessMangerInterfaces.accessManagerExtension')
 
 @section('mainContentHeader')
-    <h2 class="text-center" style="  font-decoration:underline; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif" > Registering And Checking In Visitors.</h2>
+    <h2 class="text-center" style="  font-decoration:underline; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif" > Visitors.</h2>
 @endsection
 
 @section('mainContent')

@@ -23,7 +23,7 @@
 
                 <p>
                   {{Auth::user()->firstName.' '.Auth::user()->secondName}}
-                  <small>Access Manager since  {{date('d-m-Y', strtotime(Auth::user()->created_at))}}</small>
+                  <small>Admin since  {{date('d-m-Y', strtotime(Auth::user()->created_at))}}</small>
                 </p>
               </li>
               

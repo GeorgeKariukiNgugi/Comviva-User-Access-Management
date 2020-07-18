@@ -13,7 +13,7 @@
       <th>Purpose Of Visit</th>
       <th>Approving Manager</th>
       <th>Approve</th>
-      <th>Disapprve/Cancel</th>              
+      <th>Deny</th>              
     </tr>
     </thead>
     <tbody>
@@ -75,7 +75,7 @@
             <th>Purpose Of Visit</th>
             <th>Approving Manager</th>
             <th>Approve</th>
-            <th>Disapprve/Cancel</th>             
+            <th>Deny</th>            
           </tr>
     </tfoot>
 </table>

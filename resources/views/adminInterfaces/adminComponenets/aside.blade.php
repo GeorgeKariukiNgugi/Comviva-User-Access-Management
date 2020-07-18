@@ -12,7 +12,7 @@
       <li class="header">Visitors</li>     
       <li ><a href="/checkingOutUsers"><i class="fa fa-user-plus"></i> <span>Check Out Visitors.</span></a></li>
       <li><a href="/regularVisitor"><i class="fa fa-search"></i> <span>Search For Visitors</span></a></li> 
-      <li><a href="/visitorsCheckedOut"><i class="fa fa-check-square-o"></i> <span>Visitors Checked Out.</span></a></li>   
+      <li><a href="/visitorsCheckedOut"><i class="fa fa-check-square-o"></i> <span>Visitors.</span></a></li>   
       <li class="header">Trends And Reports.</li>  
       <li class=""><a href="/trends"><i class="fa fa-bar-chart"></i> <span> Trends.</span></a></li>      
       <li class=""><a href="/reports"><i class="fa fa-book"></i> <span> Reports.</span></a></li>  

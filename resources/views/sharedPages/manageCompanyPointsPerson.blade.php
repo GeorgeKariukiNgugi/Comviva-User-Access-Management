@@ -12,7 +12,7 @@
     <div class="box-body"> 
       <div style="margin-bottom: 1.3%;">
         <div>
-          <button type="button" href = "#" class="btn btn-success pull-right fa fa-plus" style="text-decoration: bold;" data-toggle="modal" data-target="#adduser"> Add Company Points Person.</button>
+          <button type="button" href = "#" class="btn btn-success pull-right fa fa-plus" style="text-decoration: bold;" data-toggle="modal" data-target="#adduser"> Add Approving Manager.</button>
 
           {{-- Modal To add a new company points person. --}}
 
@@ -22,7 +22,7 @@
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span></button>
-                  <h4 class="modal-title text-center">ADD NEW COMPNAY POINTS PERSON.</h4>
+                  <h4 class="modal-title text-center">ADD NEW APPROVING MANAGER</h4>
                 </div>
                 <div class="modal-body">
                   <form action="/addCompanyPointsPerson" method="POST">
@@ -139,7 +139,7 @@
                         <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span></button>
-                          <h4 class="modal-title text-center">UPDATE COMPNAY POINTS PERSON.</h4>
+                          <h4 class="modal-title text-center">UPDATE APPROVING MANAGER</h4>
                         </div>
                         <div class="modal-body">
                           <form action="/updateCompanyEmployee" method="POST">

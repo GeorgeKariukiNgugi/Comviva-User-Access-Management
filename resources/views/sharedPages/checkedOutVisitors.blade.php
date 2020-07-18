@@ -1,8 +1,8 @@
 <div style="text-align: center">
 
-    <a href="#0">1. Click To Go To Visitors Checked Out Today.</a><br>
-    <a href="#1">2. Click To Go To Visitors Checked Out Yesterday.</a><br>
-    <a href="#2"> 3. Click To Go To Visitors Checked Out This Month.</a><br>
+    <a href="#0">1. Click To Go To Visitors Today.</a><br>
+    <a href="#1">2. Click To Go To Visitors Yesterday.</a><br>
+    <a href="#2"> 3. Click To Go To Visitors This Month.</a><br>
 
 </div>
 
@@ -70,21 +70,42 @@
                             {{$date}}
                        </td>
                        <td>
-                           @php
-                               $dateToFormat = date_create( $visitor->TimeOut);
-                               $date = date_format($dateToFormat, "D-d-F-Y H:i:s");
-                           @endphp
-                            {{$date}}                      
+                        
+                           @if ($visitor->approvingManagerApproval == -1)
+                              <p style="color:red">{{"Not Check In."}}</p>
+                           @else                           
+                                    @if ($visitor->TimeOut == null)
+                                        <p style="text-align: center">{{"-"}}</p>
+                                    @else
+                                    @php
+                                        // $dateToFormat = date_create( $visitor->TimeOut);
+                                        // $date = date_format($dateToFormat, "D-d-F-Y H:i:s");                                                                                
+                                        $dateToFormats = date_create($visitor->TimeOut);
+                                        $dates = date_format($dateToFormats, "D d-F-Y H:i:s"); 
+                                    @endphp
+                                    {{$dates}}
+                                    @endif
+                                    
+                                     
+                           @endif
+                                                
                        </td>
                        <td>
                         @if ($visitor->approvingManagerApproval == -1)
                         <p style="font-size: 14px;" class="label  bg-red">Denied</p>  
                         @elseif($visitor->approvingManagerApproval == 1)
                         <p style="font-size: 14px;" class="label  bg-green">Approved</p>  
+                        @elseif($visitor->approvingManagerApproval == 0)
+                        <p style="font-size: 14px;" class="label  bg-aqua">Waiting</p> 
                         @endif
                        </td>
                        <td>
-                            {{$visitor->accessLogHasOneCheckOutApprover->firstName.'  '.$visitor->accessLogHasOneCheckOutApprover->secondName}}                            
+                            @if ($visitor->checkedOutById  == null)
+                                {{"-"}}
+                            @else
+                            {{$visitor->accessLogHasOneCheckOutApprover->firstName.'  '.$visitor->accessLogHasOneCheckOutApprover->secondName}}
+                            @endif
+                            
                        </td>
 
                   </tr>                              

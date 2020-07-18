@@ -56,7 +56,7 @@ input[type=number] {
       <!-- mini logo for sidebar mini 50x50 pixels -->      
       <!-- logo for regular state and mobile devices -->
       <span class="logo-mini"><b>C</b>AM</span>      
-      <span class="logo-lg"><b>Office Park.</span>
+      <span class="logo-lg"><b>User Access .</span>
     </a>
 
 
@@ -128,6 +128,7 @@ $(function () {
     $('.select2').select2()
     })   
     $('.example1').DataTable();
+    $('#example1').DataTable();
     $('#example2').DataTable();
     $('#example3').DataTable();
     $('#example2').DataTable({
