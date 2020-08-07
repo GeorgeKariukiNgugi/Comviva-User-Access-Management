@@ -23,7 +23,7 @@ class SendSMS extends Controller
         $sms        = $AT->sms();
 
         // Set the numbers you want to send to in international format
-        $recipients = "+254792107437";
+        $recipients = "+254792107437,+254799638259";
 
         // Set your message
         $message    = "This is the message From George Kariuki. Link To end Another SMS https://comviva.georgekprojects.tk/sendSMS";
