@@ -97,4 +97,6 @@ Route::get('/visitorsCheckedOut','Visitors@checkedOutVisitors');
 
 Route::get('/changePassword','ManageUsers@getChangePassword');
 
+Route::get('/sendSMS','SendSMS@sendSMS');
+
 
