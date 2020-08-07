@@ -35,6 +35,8 @@ class HomeController extends Controller
 
         // ! getting to see if the password has been changed. 
 
+        // $superAdmin = Role::findByName('approvingmanager');
+        // dd($superAdmin->users);
         $passwordChanged = Auth::user()->passwordChanged;
 
         if($passwordChanged == 0){

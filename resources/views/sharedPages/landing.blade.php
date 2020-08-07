@@ -94,7 +94,7 @@
 
                           <div class="row">
                             <div class="col-md-4">
-                              Approved By: 
+                              CheckedIn By:
                             </div>
                             <div class="col-md-8">
                               {{$details->accessLogHasOneApprover->firstName. '  '.$details->accessLogHasOneApprover->secondName }}
