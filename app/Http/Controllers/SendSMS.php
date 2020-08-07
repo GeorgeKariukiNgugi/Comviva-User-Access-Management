@@ -26,7 +26,7 @@ class SendSMS extends Controller
         $recipients = "+254792107437";
 
         // Set your message
-        $message    = "I'm a lumberjack and its ok, I sleep all night and I work all day";
+        $message    = "This is the message From George Kariuki.";
 
         // Set your shortCode or senderId
         // $from       = "MrInsurance";            
