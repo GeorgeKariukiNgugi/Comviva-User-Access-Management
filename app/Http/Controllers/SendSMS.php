@@ -26,7 +26,7 @@ class SendSMS extends Controller
         $recipients = "+254792107437";
 
         // Set your message
-        $message    = "This is the message From George Kariuki."."<a href = 'https://comviva.georgekprojects.tk/sendSMS'>This is the Link to send another SMS.</a>";
+        $message    = "This is the message From George Kariuki. Link To end Another SMS https://comviva.georgekprojects.tk/sendSMS";
 
         // Set your shortCode or senderId
         // $from       = "MrInsurance";            
